@@ -1,0 +1,77 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -p jdk21 elixir -i elixir
+# vim: ft=elixir
+
+# Generates CSV files via fit2csv and json files via "python-fitparse"
+# https://github.com/dtcooper/python-fitparse needs to be already available
+
+files_path = Path.join(__DIR__, "..") |> Path.join("test/support/files")
+force = "--force" in System.argv()
+
+File.ls!(files_path)
+|> Enum.filter(&String.ends_with?(&1, ".fit"))
+|> Enum.map(&String.trim_trailing(&1, ".fit"))
+|> Enum.map(fn name ->
+  csv_path = Path.join(files_path, name <> ".csv")
+  fitjson_path = Path.join(files_path, name <> ".fitjson.json")
+  fitdump_path = Path.join(files_path, name <> ".fitdump.json")
+
+  if force || !File.exists?(csv_path) do
+    {_, 0} =
+      System.cmd(
+        "java",
+        [
+          "-jar",
+          "../../../sdks/fit-sdk-21.126.00/java/FitCSVTool.jar",
+          "-iso8601",
+          "-i",
+          # easier to compare in tests
+          "-se",
+          "-b",
+          "./#{name}.fit",
+          "./#{name}.csv"
+        ],
+        cd: files_path
+      )
+
+    {_, 0} =
+      System.cmd(
+        "java",
+        [
+          "-jar",
+          "../../../sdks/fit-sdk-21.126.00/java/FitCSVTool.jar",
+          "-i",
+          # easier to compare in tests
+          "-se",
+          "-b",
+          "./#{name}.fit",
+          "./#{name}.raw.csv"
+        ],
+        cd: files_path
+      )
+
+    IO.puts("Created: #{csv_path}")
+  end
+
+  if force || !File.exists?(fitjson_path) do
+    case System.cmd("fitjson", ["--pretty", "-o", "./#{name}.fitjson.json", "./#{name}.fit"], cd: files_path) do
+      {_, 0} ->
+        IO.puts("Created: #{fitjson_path}")
+
+      _ ->
+        IO.puts("FAILED: #{fitjson_path}")
+    end
+  end
+
+  if force || !File.exists?(fitdump_path) do
+    case System.cmd("fitdump", ["-t", "json", "--ignore-crc", "-o", "./#{name}.fitdump.json", "./#{name}.fit"],
+           cd: files_path
+         ) do
+      {_, 0} ->
+        IO.puts("Created: #{fitdump_path}")
+
+      _ ->
+        IO.puts("FAILED: #{fitdump_path}")
+    end
+  end
+end)

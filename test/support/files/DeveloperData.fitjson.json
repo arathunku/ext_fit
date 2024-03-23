@@ -1,0 +1,554 @@
+[
+	{
+		"frame_type": "header",
+		"header_size": 14,
+		"proto_ver": [
+			2,
+			0
+		],
+		"profile_ver": [
+			16,
+			40
+		],
+		"body_size": 162,
+		"crc": "0xd0be",
+		"crc_matched": true,
+		"chunk": {
+			"index": 0,
+			"offset": 0,
+			"size": 14
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 0,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "manufacturer",
+				"def_num": 1,
+				"type_name": "manufacturer",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "type",
+				"def_num": 0,
+				"type_name": "file",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "product",
+				"def_num": 2,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "serial_number",
+				"def_num": 3,
+				"type_name": "uint32z",
+				"base_type_name": "uint32z",
+				"size": 4
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 1,
+			"offset": 14,
+			"size": 18
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "manufacturer",
+				"value": "dynastream",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 15
+			},
+			{
+				"name": "type",
+				"value": "activity",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 4
+			},
+			{
+				"name": "garmin_product",
+				"value": 9001,
+				"units": "",
+				"def_num": 2,
+				"raw_value": 9001
+			},
+			{
+				"name": "serial_number",
+				"value": 1701,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 1701
+			}
+		],
+		"chunk": {
+			"index": 2,
+			"offset": 32,
+			"size": 10
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "developer_data_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 207,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "application_id",
+				"def_num": 1,
+				"type_name": "byte",
+				"base_type_name": "byte",
+				"size": 16
+			},
+			{
+				"name": "developer_data_index",
+				"def_num": 3,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 3,
+			"offset": 42,
+			"size": 12
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "developer_data_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "application_id",
+				"value": [
+					1,
+					1,
+					2,
+					3,
+					5,
+					8,
+					13,
+					21,
+					34,
+					55,
+					89,
+					144,
+					233,
+					121,
+					98,
+					219
+				],
+				"units": "",
+				"def_num": 1,
+				"raw_value": [
+					1,
+					1,
+					2,
+					3,
+					5,
+					8,
+					13,
+					21,
+					34,
+					55,
+					89,
+					144,
+					233,
+					121,
+					98,
+					219
+				]
+			},
+			{
+				"name": "developer_data_index",
+				"value": 0,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 4,
+			"offset": 54,
+			"size": 18
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "field_description",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 206,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "developer_data_index",
+				"def_num": 0,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "field_definition_number",
+				"def_num": 1,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "fit_base_type_id",
+				"def_num": 2,
+				"type_name": "fit_base_type",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "field_name",
+				"def_num": 3,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 17
+			},
+			{
+				"name": "units",
+				"def_num": 8,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 10
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 5,
+			"offset": 72,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "field_description",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "developer_data_index",
+				"value": 0,
+				"units": "",
+				"def_num": 0,
+				"raw_value": 0
+			},
+			{
+				"name": "field_definition_number",
+				"value": 0,
+				"units": "",
+				"def_num": 1,
+				"raw_value": 0
+			},
+			{
+				"name": "fit_base_type_id",
+				"value": "sint8",
+				"units": "",
+				"def_num": 2,
+				"raw_value": 1
+			},
+			{
+				"name": "field_name",
+				"value": "doughnuts_earned",
+				"units": "",
+				"def_num": 3,
+				"raw_value": "doughnuts_earned"
+			},
+			{
+				"name": "units",
+				"value": "doughnuts",
+				"units": "",
+				"def_num": 8,
+				"raw_value": "doughnuts"
+			}
+		],
+		"chunk": {
+			"index": 6,
+			"offset": 93,
+			"size": 31
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": true
+		},
+		"global_mesg_num": 20,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "heart_rate",
+				"def_num": 3,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cadence",
+				"def_num": 4,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "distance",
+				"def_num": 5,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "speed",
+				"def_num": 6,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			}
+		],
+		"dev_field_defs": [
+			{
+				"name": "doughnuts_earned",
+				"dev_data_index": 0,
+				"def_num": 0,
+				"type_name": "sint8",
+				"size": 1
+			}
+		],
+		"chunk": {
+			"index": 7,
+			"offset": 124,
+			"size": 22
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "heart_rate",
+				"value": 140,
+				"units": "bpm",
+				"def_num": 3,
+				"raw_value": 140
+			},
+			{
+				"name": "cadence",
+				"value": 88,
+				"units": "rpm",
+				"def_num": 4,
+				"raw_value": 88
+			},
+			{
+				"name": "distance",
+				"value": 0.51,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 51000
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 170.95680000000002,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 47.488
+			},
+			{
+				"name": "speed",
+				"value": 170.95680000000002,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 47488
+			},
+			{
+				"name": "doughnuts_earned",
+				"value": 1,
+				"units": "doughnuts",
+				"def_num": 0,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 8,
+			"offset": 146,
+			"size": 10
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "heart_rate",
+				"value": 143,
+				"units": "bpm",
+				"def_num": 3,
+				"raw_value": 143
+			},
+			{
+				"name": "cadence",
+				"value": 90,
+				"units": "rpm",
+				"def_num": 4,
+				"raw_value": 90
+			},
+			{
+				"name": "distance",
+				"value": 2.08,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 208000
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 131.0976,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 36.416
+			},
+			{
+				"name": "speed",
+				"value": 131.0976,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 36416
+			},
+			{
+				"name": "doughnuts_earned",
+				"value": 2,
+				"units": "doughnuts",
+				"def_num": 0,
+				"raw_value": 2
+			}
+		],
+		"chunk": {
+			"index": 9,
+			"offset": 156,
+			"size": 10
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "heart_rate",
+				"value": 144,
+				"units": "bpm",
+				"def_num": 3,
+				"raw_value": 144
+			},
+			{
+				"name": "cadence",
+				"value": 92,
+				"units": "rpm",
+				"def_num": 4,
+				"raw_value": 92
+			},
+			{
+				"name": "distance",
+				"value": 3.71,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 371000
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 127.23840000000001,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 35.344
+			},
+			{
+				"name": "speed",
+				"value": 127.23840000000001,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 35344
+			},
+			{
+				"name": "doughnuts_earned",
+				"value": 3,
+				"units": "doughnuts",
+				"def_num": 0,
+				"raw_value": 3
+			}
+		],
+		"chunk": {
+			"index": 10,
+			"offset": 166,
+			"size": 10
+		}
+	},
+	{
+		"frame_type": "crc",
+		"crc": "0x9ed3",
+		"matched": true,
+		"chunk": {
+			"index": 11,
+			"offset": 176,
+			"size": 2
+		}
+	}
+]

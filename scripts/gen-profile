@@ -1,0 +1,473 @@
+#!/usr/bin/env elixir
+
+Mix.install([{:csv, "~> 3.2"}])
+
+defmodule ExtFit.GenProfile do
+  @moduledoc """
+  Generates ExtFit.Profile and ExtFit.Profile.Types modules from the profile CSV file.
+
+  ExtFit.Profile macro does most of the heavy lifting.
+  It generates final data structs for types and messages.
+  """
+  def gen_types(csv_types, version) do
+    types =
+      types(csv_types)
+      |> Enum.map(fn {name, %{base_type: base_type, values: values}} ->
+        name = String.to_atom(name)
+        base_type = String.to_atom(base_type)
+
+        values =
+          Enum.map(values, fn
+            {value, {value_name, ""}} when is_number(value) and is_boolean(value_name) ->
+              {value, value_name}
+
+            {value, {value_name, ""}} when is_number(value) and is_bitstring(value_name) ->
+              {value, value_name}
+
+            {value, {value_name, comment}} when is_number(value) and is_bitstring(value_name) ->
+              {value, value_name, %{comment: comment}}
+          end)
+          |> Enum.sort_by(&elem(&1, 0))
+
+        quote do
+          type(unquote(name), unquote(base_type), unquote(values))
+        end
+      end)
+
+    module =
+      quote unquote: true do
+        defmodule ExtFit.Profile.Types do
+          use ExtFit.Profile, :types
+
+          @version unquote(version)
+
+          unquote_splicing(types)
+
+          @doc """
+          Shortcut to quickly get common message num without going through mesg type
+          """
+          @spec mesg_num(:hr | :file_id | :field_description | :developer_data_id) :: integer
+          def mesg_num(:file_id), do: 0
+          def mesg_num(:field_description), do: 206
+          def mesg_num(:developer_data_id), do: 207
+          def mesg_num(:hr), do: 132
+        end
+      end
+
+    module
+    |> Macro.to_string()
+    |> IO.iodata_to_binary()
+  end
+
+  def gen_messages(csv_messages, version) do
+    messages =
+      csv_messages
+      |> decode_msg_line([])
+      |> Enum.reverse()
+      |> Enum.map(fn message ->
+        name = message.name
+
+        fields =
+          message.fields
+          |> Enum.reverse()
+          |> Enum.map(fn %{num: num, name: name, type: type} = field ->
+            opts =
+              Map.drop(field, [:num, :name, :type])
+              |> Enum.filter(fn {_k, v} -> is_empty_value?(v) end)
+
+            if opts != [] do
+              quote do
+                field(unquote(num), unquote(name), unquote(type), unquote(opts))
+              end
+            else
+              quote do
+                field(unquote(num), unquote(name), unquote(type))
+              end
+            end
+          end)
+
+        quote do
+          message(unquote(name)) do
+            (unquote_splicing(fields))
+          end
+        end
+      end)
+
+    module =
+      quote unquote: true do
+        defmodule ExtFit.Profile.Messages do
+          use ExtFit.Profile, :messages
+          @version unquote(version)
+          @moduledoc "FIT Messages for profile from version: #{@version}"
+
+          unquote_splicing(messages)
+        end
+      end
+
+
+      module
+      |> Macro.to_string()
+      |> IO.iodata_to_binary()
+  end
+
+  defp types(csv_types) do
+    csv_types
+    |> decode_type_line()
+    |> Map.put("common_fields", %{
+      base_type: "enum",
+      values: %{
+        250 => {"part_index", ""},
+        253 => {"timestamp", ""},
+        254 => {"message_index", ""}
+      }
+    })
+    |> Map.put("version", %{
+      base_type: "uint16",
+      values: %{
+        21 => {"major", ""},
+        126 => {"minor", ""},
+        0 => {"patch", ""}
+        # "Release" => {"type", 0}
+      }
+    })
+    |> Map.put("bool", %{
+      base_type: "enum",
+      values: %{
+        0 => {false, ""},
+        1 => {true, ""}
+      }
+    })
+  end
+
+  @headers ["Type Name", "Base Type", "Value Name", "Value", "Comment"]
+  defp decode_type_line([@headers | rows]), do: decode_type_line(rows, %{})
+  defp decode_type_line([], types), do: types
+
+  defp decode_type_line([[name, type, "", "", comment] | rows], types) do
+    {values, rows} = decode_type_values(rows, %{})
+
+    decode_type_line(
+      rows,
+      Map.put(types, name, %{base_type: type, comment: comment, values: values})
+    )
+  end
+
+  def decode_type_values([[_name, _type, "", "", _] | _] = rows, values), do: {values, rows}
+  def decode_type_values([], values), do: {values, []}
+
+  def decode_type_values([["", "", value_name, value, comment] | rest], values) do
+    value = maybe_number(value, "'#{value_name}', comment: #{comment}")
+
+    decode_type_values(rest, Map.put(values, value, {value_name, comment}))
+  end
+
+  @headers [
+    # 1
+    "Message Name",
+    # 2
+    "Field Def #",
+    # 3
+    "Field Name",
+    # 4
+    "Field Type",
+    # 5
+    "Array",
+    # 6
+    "Components",
+    # 7
+    "Scale",
+    # 8
+    "Offset",
+    # 9
+    "Units",
+    # 10
+    "Bits",
+    # 11
+    "Accumulate",
+    # 12
+    "Ref Field Name",
+    # 13
+    "Ref Field Value",
+    # 14
+    "Comment",
+    # 15
+    "Products:",
+    # 16
+    "EXAMPLE"
+  ]
+  # skips section headers
+  defp next_row([["", "", "", _, "", "", "", "", "", "", "", "", "", "", "", ""] | rest]), do: rest
+  defp next_row(rest) when is_list(rest), do: rest
+
+  defp decode_msg_line([@headers | rows], msgs), do: decode_msg_line(rows, msgs)
+  defp decode_msg_line([], msgs), do: msgs
+
+  defp decode_msg_line(
+         [
+           [name, "", "", "", "", "", "", "", "", "", "", "", "", comment, "", _]
+           | rows
+         ],
+         msgs
+       ) do
+    {fields, rows} = decode_msg_fields(rows, [])
+
+    msg =
+      %{
+        name: String.to_atom(name),
+        comment: maybe_comment(comment),
+        fields: fields
+      }
+
+    decode_msg_line(next_row(rows), [msg | msgs])
+  end
+
+  def decode_msg_fields(
+        [
+          [_name, "", "", "", "", "", "", "", "", "", "", "", "", _comment, "", _]
+          | _
+        ] = rows,
+        values
+      ),
+      do: {values, rows}
+
+  def decode_msg_fields([], fields), do: {fields, []}
+
+  def decode_msg_fields(
+        [
+          [
+            "",
+            num,
+            name,
+            type,
+            _array,
+            _components,
+            _scale,
+            _offset,
+            _units,
+            _bits,
+            accumulate,
+            _ref_field_name,
+            _ref_field_value,
+            comment,
+            _products,
+            _example
+          ] = columns
+          | rest
+        ],
+        fields
+      ) do
+    err = "name=#{name} type=#{type},  comment: #{comment}"
+    num = maybe_number(num, err)
+    field = build_base_field(columns)
+
+    {subfields, rows} = decode_msg_subfields(next_row(rest), [])
+
+    field =
+      Map.merge(field, %{
+        subfields: subfields,
+        num: num,
+        accumulate: as_list(accumulate) |> Enum.map(&(&1 == "1"))
+      })
+
+    decode_msg_fields(next_row(rows), [field | fields])
+  end
+
+  def decode_msg_subfields(
+        [
+          [
+            "",
+            "",
+            _name,
+            _type,
+            _,
+            _,
+            _scale,
+            _offset,
+            _units,
+            _bits,
+            "",
+            ref_field_name,
+            ref_field_value,
+            _comment,
+            _product,
+            _example
+          ] = subfield
+          | rest
+        ],
+        subfields
+      ) do
+    subfield =
+      Map.merge(build_base_field(subfield), %{
+        ref_fields: Enum.zip(as_list(ref_field_name) |> Enum.map(&String.to_atom/1), as_list(ref_field_value))
+      })
+      |> Enum.filter(fn {_k, v} -> is_empty_value?(v) end)
+      |> Enum.into(%{})
+
+    decode_msg_subfields(next_row(rest), [subfield | subfields])
+  end
+
+  def decode_msg_subfields(rows, subfields) do
+    {subfields, rows}
+  end
+
+  def build_base_field(field) do
+    [
+      # 1
+      "",
+      # 2
+      _num,
+      # 3
+      name,
+      # 4
+      type,
+      # 5
+      array,
+      # 6
+      components,
+      # 7
+      scale,
+      # 8
+      offset,
+      # 9
+      units,
+      # 10
+      bits,
+      # 11
+      _accumulate,
+      # 12
+      _ref_field_name,
+      # 13
+      _ref_field_value,
+      # 14
+      comment,
+      # 15
+      _products,
+      # 16
+      example
+    ] = field
+
+    err = "name=#{name} type=#{type},  comment: #{comment}"
+
+    array =
+      case array do
+        "" -> false
+        "[N]" -> true
+        "[" <> rest -> maybe_number(String.trim_trailing(rest, "]"), err)
+      end
+
+    %{
+      name: String.to_atom(name),
+      type: String.to_atom(type),
+      comment: comment,
+      example: example,
+      array: array,
+      scale: maybe_number_list(scale, err),
+      offset: maybe_number_list(offset, err),
+      units: as_list(units),
+      bits: maybe_number_list(bits, err),
+      components: as_list(components) |> Enum.map(&String.to_atom/1)
+    }
+  end
+
+  def as_list(value), do: value |> String.split(",", trim: true)
+
+  def maybe_number_list(value, err_details),
+    do: value |> as_list() |> Enum.map(&maybe_number(&1, err_details))
+
+  def empty_list_as_nil([]), do: nil
+  def empty_list_as_nil(list), do: list
+
+  def maybe_number("", _), do: nil
+
+  def maybe_number(v, err_details) do
+    result =
+      case String.trim(v) do
+        "-" <> v ->
+          {-1 * maybe_number(v, err_details), ""}
+
+        "0." <> _ ->
+          Float.parse(v)
+
+        "0x" <> v ->
+          Integer.parse(v, 16)
+
+        v ->
+          with {_v, ""} = r <- Integer.parse(v) do
+            r
+          else
+            _ -> Float.parse(v)
+          end
+      end
+
+    with {v, ""} <- result do
+      v
+    else
+      _ ->
+        raise "Couldn't parse '#{inspect(result)}' #{err_details}"
+    end
+  end
+
+  defp is_empty_value?(v), do: v != [] && v != nil && v != false && v != ""
+  defp maybe_comment(""), do: nil
+  defp maybe_comment(c), do: c
+end
+
+defmodule Mix.Tasks.GenProfile do
+  @moduledoc "Generete profile from profile csvs."
+
+  use Mix.Task
+
+  @version "21.126.00"
+  @source_dir Path.join(__DIR__, "../sdks") |> Path.expand()
+  @output_dir Path.join(__DIR__, "../lib/ext_fit/profile") |> Path.expand()
+  @format_opts [line_length: 120, normalize_charlists_as_sigils: false]
+
+  @impl Mix.Task
+  def run(_args) do
+    Mix.shell().info("Generating profile for version #{@version}...")
+
+    gen_profile_file("Types", @version, "types.ex", &ExtFit.GenProfile.gen_types/2)
+    gen_profile_file("Messages", @version, "messages.ex", &ExtFit.GenProfile.gen_messages/2)
+  end
+
+  defp gen_profile_file(type, version, output_ex, generator) do
+    with {:ok, stream} <- get_file_stream(Path.join(@source_dir, "profile-#{version}/Profile-#{type}.csv")) do
+      output_path = Path.join(@output_dir, output_ex)
+
+      output = stream
+      |> CSV.decode!()
+      |> Enum.to_list()
+      |> generator.(version)
+      |> Code.format_string!(@format_opts)
+
+      File.write!(output_path, output)
+
+      IO.write("  ")
+      substep_info("created: #{output_path}")
+    else
+      {:error, error} ->
+        Mix.shell().error(error)
+    end
+  end
+
+  defp get_file_stream(path) when is_bitstring(path) do
+    substep_info("reading: #{path}")
+
+    if File.exists?(path) do
+      {:ok, File.stream!(path)}
+    else
+      {:error, "File not found: #{path}"}
+    end
+  end
+
+  defp substep_info(msg) do
+    Mix.shell().info([
+      IO.ANSI.light_black(),
+      "↳ ",
+      msg,
+      IO.ANSI.reset()
+    ])
+  end
+end
+
+Mix.Tasks.GenProfile.run(System.argv())

@@ -1,0 +1,2408 @@
+[
+	{
+		"frame_type": "header",
+		"header_size": 12,
+		"proto_ver": [
+			1,
+			0
+		],
+		"profile_ver": [
+			1,
+			0
+		],
+		"body_size": 757,
+		"crc": "0x0000",
+		"crc_matched": null,
+		"chunk": {
+			"index": 0,
+			"offset": 0,
+			"size": 12
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 0,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "serial_number",
+				"def_num": 3,
+				"type_name": "uint32z",
+				"base_type_name": "uint32z",
+				"size": 4
+			},
+			{
+				"name": "time_created",
+				"def_num": 4,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "manufacturer",
+				"def_num": 1,
+				"type_name": "manufacturer",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "product",
+				"def_num": 2,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "type",
+				"def_num": 0,
+				"type_name": "file",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 1,
+			"offset": 12,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "serial_number",
+				"value": 2147483647,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 2147483647
+			},
+			{
+				"name": "time_created",
+				"value": "2012-04-09T21:22:26+00:00",
+				"units": "",
+				"def_num": 4,
+				"raw_value": 702940946
+			},
+			{
+				"name": "manufacturer",
+				"value": "dynastream",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 15
+			},
+			{
+				"name": "garmin_product",
+				"value": "hrm1",
+				"units": "",
+				"def_num": 2,
+				"raw_value": 1
+			},
+			{
+				"name": "type",
+				"value": "activity",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 4
+			}
+		],
+		"chunk": {
+			"index": 2,
+			"offset": 33,
+			"size": 14
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_creator",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 49,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "software_version",
+				"def_num": 0,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "hardware_version",
+				"def_num": 1,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 3,
+			"offset": 47,
+			"size": 12
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_creator",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 49,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "software_version",
+				"def_num": 0,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 4,
+			"offset": 59,
+			"size": 9
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "file_creator",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "software_version",
+				"value": 240,
+				"units": "",
+				"def_num": 0,
+				"raw_value": 240
+			}
+		],
+		"chunk": {
+			"index": 5,
+			"offset": 68,
+			"size": 3
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "event",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 21,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "data",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "event",
+				"def_num": 0,
+				"type_name": "event",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_type",
+				"def_num": 1,
+				"type_name": "event_type",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_group",
+				"def_num": 4,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 6,
+			"offset": 71,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "event",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 21,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "data",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event",
+				"def_num": 0,
+				"type_name": "event",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_type",
+				"def_num": 1,
+				"type_name": "event_type",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_group",
+				"def_num": 4,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 7,
+			"offset": 92,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "event",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:26+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940946
+			},
+			{
+				"name": "timer_trigger",
+				"value": "manual",
+				"units": "",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "event",
+				"value": "timer",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 0
+			},
+			{
+				"name": "event_type",
+				"value": "start",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 0
+			},
+			{
+				"name": "event_group",
+				"value": 0,
+				"units": "",
+				"def_num": 4,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 8,
+			"offset": 113,
+			"size": 9
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 20,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "position_lat",
+				"def_num": 0,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "position_long",
+				"def_num": 1,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "distance",
+				"def_num": 5,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "altitude",
+				"def_num": 2,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "speed",
+				"def_num": 6,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 9,
+			"offset": 122,
+			"size": 24
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:26+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940946
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513926070183516,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280430
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859078265727,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696681
+			},
+			{
+				"name": "distance",
+				"value": 2e-05,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 2
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 10,
+			"offset": 146,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:27+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940947
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513926070183516,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280430
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859069883823,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696680
+			},
+			{
+				"name": "distance",
+				"value": 2e-05,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 2
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 11,
+			"offset": 167,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:28+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940948
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513926070183516,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280430
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859069883823,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696680
+			},
+			{
+				"name": "distance",
+				"value": 2e-05,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 2
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 12,
+			"offset": 188,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:29+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940949
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513926992192864,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280441
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859254285693,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696702
+			},
+			{
+				"name": "distance",
+				"value": 0.00020999999999999998,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 21
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 13,
+			"offset": 209,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:30+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940950
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513927578926086,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280448
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859329722822,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696711
+			},
+			{
+				"name": "distance",
+				"value": 0.00028000000000000003,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 28
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 14,
+			"offset": 230,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:31+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940951
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51392808184028,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280454
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859388396144,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696718
+			},
+			{
+				"name": "distance",
+				"value": 0.00035,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 35
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 15,
+			"offset": 251,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:32+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940952
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513928417116404,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280458
+			},
+			{
+				"name": "position_long",
+				"value": -73.14859438687563,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696724
+			},
+			{
+				"name": "distance",
+				"value": 0.00041,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 41
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 16,
+			"offset": 272,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:33+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940953
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51393218897283,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280503
+			},
+			{
+				"name": "position_long",
+				"value": -73.14860176295042,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696812
+			},
+			{
+				"name": "distance",
+				"value": 0.00114,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 114
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.0
+			},
+			{
+				"name": "speed",
+				"value": 0.0,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 17,
+			"offset": 293,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:34+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940954
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51393403299153,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280525
+			},
+			{
+				"name": "position_long",
+				"value": -73.14860980957747,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872696908
+			},
+			{
+				"name": "distance",
+				"value": 0.00185,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 185
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.3312,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.092
+			},
+			{
+				"name": "speed",
+				"value": 0.3312,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 92
+			}
+		],
+		"chunk": {
+			"index": 18,
+			"offset": 314,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:35+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940955
+			},
+			{
+				"name": "position_lat",
+				"value": 41.513936799019575,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280558
+			},
+			{
+				"name": "position_long",
+				"value": -73.14861986786127,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872697028
+			},
+			{
+				"name": "distance",
+				"value": 0.00275,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 275
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.5472,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.152
+			},
+			{
+				"name": "speed",
+				"value": 0.5472,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 152
+			}
+		],
+		"chunk": {
+			"index": 19,
+			"offset": 335,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:36+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940956
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51393931359053,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280588
+			},
+			{
+				"name": "position_long",
+				"value": -73.14862833358347,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872697129
+			},
+			{
+				"name": "distance",
+				"value": 0.0035099999999999997,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 351
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.7524,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.209
+			},
+			{
+				"name": "speed",
+				"value": 0.7524,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 209
+			}
+		],
+		"chunk": {
+			"index": 20,
+			"offset": 356,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:37+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940957
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51393646374345,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280554
+			},
+			{
+				"name": "position_long",
+				"value": -73.14863621257246,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872697223
+			},
+			{
+				"name": "distance",
+				"value": 0.00422,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 422
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 0.9432,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.262
+			},
+			{
+				"name": "speed",
+				"value": 0.9432,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 262
+			}
+		],
+		"chunk": {
+			"index": 21,
+			"offset": 377,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:38+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940958
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51393017731607,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280479
+			},
+			{
+				"name": "position_long",
+				"value": -73.14863453619182,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872697203
+			},
+			{
+				"name": "distance",
+				"value": 0.0049299999999999995,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 493
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 1.1052,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.307
+			},
+			{
+				"name": "speed",
+				"value": 1.1052,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 307
+			}
+		],
+		"chunk": {
+			"index": 22,
+			"offset": 398,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "record",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:39+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940959
+			},
+			{
+				"name": "position_lat",
+				"value": 41.51392372325063,
+				"units": "deg",
+				"def_num": 0,
+				"raw_value": 495280402
+			},
+			{
+				"name": "position_long",
+				"value": -73.14863906241953,
+				"units": "deg",
+				"def_num": 1,
+				"raw_value": -872697257
+			},
+			{
+				"name": "distance",
+				"value": 0.005730000000000001,
+				"units": "km",
+				"def_num": 5,
+				"raw_value": 573
+			},
+			{
+				"name": "enhanced_altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 78,
+				"raw_value": 278.20000000000005
+			},
+			{
+				"name": "altitude",
+				"value": 278.20000000000005,
+				"units": "m",
+				"def_num": 2,
+				"raw_value": 3891
+			},
+			{
+				"name": "enhanced_speed",
+				"value": 1.3248,
+				"units": "km/h",
+				"def_num": 73,
+				"raw_value": 0.368
+			},
+			{
+				"name": "speed",
+				"value": 1.3248,
+				"units": "km/h",
+				"def_num": 6,
+				"raw_value": 368
+			}
+		],
+		"chunk": {
+			"index": 23,
+			"offset": 419,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "event",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:22:39+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702940959
+			},
+			{
+				"name": "timer_trigger",
+				"value": "manual",
+				"units": "",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "event",
+				"value": "timer",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 0
+			},
+			{
+				"name": "event_type",
+				"value": "stop_all",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 4
+			},
+			{
+				"name": "event_group",
+				"value": 0,
+				"units": "",
+				"def_num": 4,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 24,
+			"offset": 440,
+			"size": 9
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "lap",
+		"header": {
+			"local_mesg_num": 3,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 19,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "start_time",
+				"def_num": 2,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "start_position_lat",
+				"def_num": 3,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "start_position_long",
+				"def_num": 4,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "end_position_lat",
+				"def_num": 5,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "end_position_long",
+				"def_num": 6,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "total_elapsed_time",
+				"def_num": 7,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "total_timer_time",
+				"def_num": 8,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "total_distance",
+				"def_num": 9,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_calories",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_fat_calories",
+				"def_num": 12,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "avg_speed",
+				"def_num": 13,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "max_speed",
+				"def_num": 14,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_ascent",
+				"def_num": 21,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_descent",
+				"def_num": 22,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "event",
+				"def_num": 0,
+				"type_name": "event",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_type",
+				"def_num": 1,
+				"type_name": "event_type",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "lap_trigger",
+				"def_num": 24,
+				"type_name": "lap_trigger",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sport",
+				"def_num": 25,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 25,
+			"offset": 449,
+			"size": 66
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "lap",
+		"header": {
+			"local_mesg_num": 3,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:24:51+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702941091
+			},
+			{
+				"name": "start_time",
+				"value": "2012-04-09T21:22:26+00:00",
+				"units": "",
+				"def_num": 2,
+				"raw_value": 702940946
+			},
+			{
+				"name": "start_position_lat",
+				"value": 41.513926070183516,
+				"units": "deg",
+				"def_num": 3,
+				"raw_value": 495280430
+			},
+			{
+				"name": "start_position_long",
+				"value": -73.14859078265727,
+				"units": "deg",
+				"def_num": 4,
+				"raw_value": -872696681
+			},
+			{
+				"name": "end_position_lat",
+				"value": 41.51392372325063,
+				"units": "deg",
+				"def_num": 5,
+				"raw_value": 495280402
+			},
+			{
+				"name": "end_position_long",
+				"value": -73.14863906241953,
+				"units": "deg",
+				"def_num": 6,
+				"raw_value": -872697257
+			},
+			{
+				"name": "total_elapsed_time",
+				"value": 13.749,
+				"units": "s",
+				"def_num": 7,
+				"raw_value": 13749
+			},
+			{
+				"name": "total_timer_time",
+				"value": 13.749,
+				"units": "s",
+				"def_num": 8,
+				"raw_value": 13749
+			},
+			{
+				"name": "total_distance",
+				"value": 0.005730000000000001,
+				"units": "km",
+				"def_num": 9,
+				"raw_value": 573
+			},
+			{
+				"name": "message_index",
+				"value": 0,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 0
+			},
+			{
+				"name": "total_calories",
+				"value": 0,
+				"units": "kcal",
+				"def_num": 11,
+				"raw_value": 0
+			},
+			{
+				"name": "total_fat_calories",
+				"value": 0,
+				"units": "kcal",
+				"def_num": 12,
+				"raw_value": 0
+			},
+			{
+				"name": "enhanced_avg_speed",
+				"value": 1.5011999999999999,
+				"units": "km/h",
+				"def_num": 110,
+				"raw_value": 0.417
+			},
+			{
+				"name": "avg_speed",
+				"value": 1.5011999999999999,
+				"units": "km/h",
+				"def_num": 13,
+				"raw_value": 417
+			},
+			{
+				"name": "enhanced_max_speed",
+				"value": 1.3248,
+				"units": "km/h",
+				"def_num": 111,
+				"raw_value": 0.368
+			},
+			{
+				"name": "max_speed",
+				"value": 1.3248,
+				"units": "km/h",
+				"def_num": 14,
+				"raw_value": 368
+			},
+			{
+				"name": "total_ascent",
+				"value": 0,
+				"units": "m",
+				"def_num": 21,
+				"raw_value": 0
+			},
+			{
+				"name": "total_descent",
+				"value": 0,
+				"units": "m",
+				"def_num": 22,
+				"raw_value": 0
+			},
+			{
+				"name": "event",
+				"value": "lap",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 9
+			},
+			{
+				"name": "event_type",
+				"value": "stop",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 1
+			},
+			{
+				"name": "lap_trigger",
+				"value": "session_end",
+				"units": "",
+				"def_num": 24,
+				"raw_value": 7
+			},
+			{
+				"name": "sport",
+				"value": "running",
+				"units": "",
+				"def_num": 25,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 26,
+			"offset": 515,
+			"size": 55
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "event",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 21,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "data",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "event",
+				"def_num": 0,
+				"type_name": "event",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_type",
+				"def_num": 1,
+				"type_name": "event_type",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_group",
+				"def_num": 4,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 27,
+			"offset": 570,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "event",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:24:51+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702941091
+			},
+			{
+				"name": "data",
+				"value": 1,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 1
+			},
+			{
+				"name": "event",
+				"value": "session",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 8
+			},
+			{
+				"name": "event_type",
+				"value": "stop_disable_all",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 9
+			},
+			{
+				"name": "event_group",
+				"value": 1,
+				"units": "",
+				"def_num": 4,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 28,
+			"offset": 591,
+			"size": 12
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "session",
+		"header": {
+			"local_mesg_num": 4,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 18,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "start_time",
+				"def_num": 2,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "start_position_lat",
+				"def_num": 3,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "start_position_long",
+				"def_num": 4,
+				"type_name": "sint32",
+				"base_type_name": "sint32",
+				"size": 4
+			},
+			{
+				"name": "total_elapsed_time",
+				"def_num": 7,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "total_timer_time",
+				"def_num": 8,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "total_distance",
+				"def_num": 9,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_calories",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_fat_calories",
+				"def_num": 13,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "avg_speed",
+				"def_num": 14,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "max_speed",
+				"def_num": 15,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_ascent",
+				"def_num": 22,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "total_descent",
+				"def_num": 23,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "first_lap_index",
+				"def_num": 25,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "num_laps",
+				"def_num": 26,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "event",
+				"def_num": 0,
+				"type_name": "event",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_type",
+				"def_num": 1,
+				"type_name": "event_type",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sport",
+				"def_num": 5,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 6,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "trigger",
+				"def_num": 28,
+				"type_name": "session_trigger",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 29,
+			"offset": 603,
+			"size": 69
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "session",
+		"header": {
+			"local_mesg_num": 4,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:24:51+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702941091
+			},
+			{
+				"name": "start_time",
+				"value": "2012-04-09T21:22:26+00:00",
+				"units": "",
+				"def_num": 2,
+				"raw_value": 702940946
+			},
+			{
+				"name": "start_position_lat",
+				"value": 41.513926070183516,
+				"units": "deg",
+				"def_num": 3,
+				"raw_value": 495280430
+			},
+			{
+				"name": "start_position_long",
+				"value": -73.14859078265727,
+				"units": "deg",
+				"def_num": 4,
+				"raw_value": -872696681
+			},
+			{
+				"name": "total_elapsed_time",
+				"value": 13.749,
+				"units": "s",
+				"def_num": 7,
+				"raw_value": 13749
+			},
+			{
+				"name": "total_timer_time",
+				"value": 13.749,
+				"units": "s",
+				"def_num": 8,
+				"raw_value": 13749
+			},
+			{
+				"name": "total_distance",
+				"value": 0.005730000000000001,
+				"units": "km",
+				"def_num": 9,
+				"raw_value": 573
+			},
+			{
+				"name": "message_index",
+				"value": 0,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 0
+			},
+			{
+				"name": "total_calories",
+				"value": 0,
+				"units": "kcal",
+				"def_num": 11,
+				"raw_value": 0
+			},
+			{
+				"name": "total_fat_calories",
+				"value": 0,
+				"units": "kcal",
+				"def_num": 13,
+				"raw_value": 0
+			},
+			{
+				"name": "enhanced_avg_speed",
+				"value": 1.5011999999999999,
+				"units": "km/h",
+				"def_num": 124,
+				"raw_value": 0.417
+			},
+			{
+				"name": "avg_speed",
+				"value": 1.5011999999999999,
+				"units": "km/h",
+				"def_num": 14,
+				"raw_value": 417
+			},
+			{
+				"name": "enhanced_max_speed",
+				"value": 1.3248,
+				"units": "km/h",
+				"def_num": 125,
+				"raw_value": 0.368
+			},
+			{
+				"name": "max_speed",
+				"value": 1.3248,
+				"units": "km/h",
+				"def_num": 15,
+				"raw_value": 368
+			},
+			{
+				"name": "total_ascent",
+				"value": 0,
+				"units": "m",
+				"def_num": 22,
+				"raw_value": 0
+			},
+			{
+				"name": "total_descent",
+				"value": 0,
+				"units": "m",
+				"def_num": 23,
+				"raw_value": 0
+			},
+			{
+				"name": "first_lap_index",
+				"value": 0,
+				"units": "",
+				"def_num": 25,
+				"raw_value": 0
+			},
+			{
+				"name": "num_laps",
+				"value": 1,
+				"units": "",
+				"def_num": 26,
+				"raw_value": 1
+			},
+			{
+				"name": "event",
+				"value": "lap",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 9
+			},
+			{
+				"name": "event_type",
+				"value": "stop",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 1
+			},
+			{
+				"name": "sport",
+				"value": "running",
+				"units": "",
+				"def_num": 5,
+				"raw_value": 1
+			},
+			{
+				"name": "sub_sport",
+				"value": "generic",
+				"units": "",
+				"def_num": 6,
+				"raw_value": 0
+			},
+			{
+				"name": "trigger",
+				"value": "activity_end",
+				"units": "",
+				"def_num": 28,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 30,
+			"offset": 672,
+			"size": 52
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "activity",
+		"header": {
+			"local_mesg_num": 5,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 34,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "total_timer_time",
+				"def_num": 0,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "local_timestamp",
+				"def_num": 5,
+				"type_name": "local_date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "num_sessions",
+				"def_num": 1,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "type",
+				"def_num": 2,
+				"type_name": "activity",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event",
+				"def_num": 3,
+				"type_name": "event",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "event_type",
+				"def_num": 4,
+				"type_name": "event_type",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 31,
+			"offset": 724,
+			"size": 27
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "activity",
+		"header": {
+			"local_mesg_num": 5,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2012-04-09T21:24:51+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 702941091
+			},
+			{
+				"name": "total_timer_time",
+				"value": 13.749,
+				"units": "s",
+				"def_num": 0,
+				"raw_value": 13749
+			},
+			{
+				"name": "local_timestamp",
+				"value": "2012-04-09T17:24:51",
+				"units": "",
+				"def_num": 5,
+				"raw_value": 702926691
+			},
+			{
+				"name": "num_sessions",
+				"value": 1,
+				"units": "",
+				"def_num": 1,
+				"raw_value": 1
+			},
+			{
+				"name": "type",
+				"value": "manual",
+				"units": "",
+				"def_num": 2,
+				"raw_value": 0
+			},
+			{
+				"name": "event",
+				"value": "activity",
+				"units": "",
+				"def_num": 3,
+				"raw_value": 26
+			},
+			{
+				"name": "event_type",
+				"value": "stop",
+				"units": "",
+				"def_num": 4,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 32,
+			"offset": 751,
+			"size": 18
+		}
+	},
+	{
+		"frame_type": "crc",
+		"crc": "0xa1d5",
+		"matched": true,
+		"chunk": {
+			"index": 33,
+			"offset": 769,
+			"size": 2
+		}
+	}
+]

@@ -1,0 +1,3 @@
+lib/ext_fit/profile
+priv/*.csv
+test/support/files

@@ -1,0 +1,116 @@
+# Running insights (WIP)
+
+```elixir
+Mix.install([
+  {:ext_fit, path: "./"},
+  {:kino_maplibre, "~> 0.1.11"},
+  {:req, "~> 0.4.0"},
+  {:kino_vega_lite, "~> 0.1.10"}
+])
+```
+
+## FIT Intake
+
+```elixir
+alias ExtFit.{Record, Field}
+
+records =
+  "./test/support/files/2023-06-04-garmin-955-running.fit"
+  |> File.read!()
+  |> ExtFit.Decode.decode!()
+
+IO.inspect(Record.debug(Enum.at(records, 2)))
+record_msgs = Record.records_by_message(records, :record)
+
+length(records)
+```
+
+```elixir
+geolocations =
+  record_msgs
+  |> Enum.map(fn record ->
+    with [%{value: plat}] when not is_nil(plat) <- Record.fields_by_name(record, :position_lat),
+         [%{value: plong}] when not is_nil(plat) <- Record.fields_by_name(record, :position_long) do
+      {plong, plat}
+    else
+      _ -> nil
+    end
+  end)
+  |> Enum.filter(&(&1 != nil))
+
+MapLibre.new(
+  center: Enum.at(geolocations, trunc(length(gelocations) / 2)),
+  zoom: 10,
+  style: "https://api.maptiler.com/maps/basic/style.json?key=Q4UbchekCfyvXvZcWRoU"
+)
+|> MapLibre.add_source("route",
+  type: :geojson,
+  data: [
+    type: "Feature",
+    geometry: [
+      type: "LineString",
+      coordinates: gelocations
+    ]
+  ]
+)
+|> MapLibre.add_layer(
+  id: "route",
+  type: :line,
+  source: "route",
+  layout: [
+    line_join: "round",
+    line_cap: "round"
+  ],
+  paint: [
+    line_color: "#000",
+    line_width: 2
+  ]
+)
+|> Kino.MapLibre.new()
+```
+
+```elixir
+fields = [:distance, :timestamp, :heart_rate, :enhanced_altitude]
+
+dataframe =
+  record_msgs
+  |> Enum.reduce(%{}, fn record, acc ->
+    fields
+    |> Enum.reduce(acc, fn field_name, acc ->
+      values = Map.get(acc, field_name, [])
+
+      value =
+        case Record.fields_by_name(record, field_name) do
+          [%{value: value}] when is_integer(value) ->
+            value
+
+          [%{value: value}] when is_float(value) ->
+            Float.round(value) |> trunc()
+
+          [%{value: value}] ->
+            value
+
+          _ ->
+            nil
+        end
+
+      Map.put(acc, field_name, [value | values])
+    end)
+  end)
+  |> then(fn values ->
+    values
+    |> Enum.map(fn {key, values} -> {key, Enum.reverse(values)} end)
+    |> Enum.into(%{})
+  end)
+```
+
+```elixir
+alias VegaLite, as: Vl
+
+Vl.new(width: 700, height: 300, title: "Overview")
+|> Vl.data_from_values(dataframe, only: ["distance", "heart_rate", "enhanced_altitude"])
+|> Vl.mark(:point, tooltip: %{content: "data"})
+|> Vl.encode_field(:x, "distance", type: :quantitative)
+|> Vl.encode_field(:y, "heart_rate", type: :quantitative, title: "HR")
+|> Vl.encode_field(:color, "heart_rate", type: :quantitative)
+```

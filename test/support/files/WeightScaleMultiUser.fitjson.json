@@ -1,0 +1,563 @@
+[
+	{
+		"frame_type": "header",
+		"header_size": 12,
+		"proto_ver": [
+			1,
+			0
+		],
+		"profile_ver": [
+			0,
+			71
+		],
+		"body_size": 156,
+		"crc": "0x0000",
+		"crc_matched": null,
+		"chunk": {
+			"index": 0,
+			"offset": 0,
+			"size": 12
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 0,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "type",
+				"def_num": 0,
+				"type_name": "file",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "manufacturer",
+				"def_num": 1,
+				"type_name": "manufacturer",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "product",
+				"def_num": 2,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "serial_number",
+				"def_num": 3,
+				"type_name": "uint32z",
+				"base_type_name": "uint32z",
+				"size": 4
+			},
+			{
+				"name": "time_created",
+				"def_num": 4,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 1,
+			"offset": 12,
+			"size": 21
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "type",
+				"value": "weight",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 9
+			},
+			{
+				"name": "manufacturer",
+				"value": "dynastream",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 15
+			},
+			{
+				"name": "garmin_product",
+				"value": 22,
+				"units": "",
+				"def_num": 2,
+				"raw_value": 22
+			},
+			{
+				"name": "serial_number",
+				"value": 1234,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 1234
+			},
+			{
+				"name": "time_created",
+				"value": "2009-09-09T20:38:00+00:00",
+				"units": "",
+				"def_num": 4,
+				"raw_value": 621463080
+			}
+		],
+		"chunk": {
+			"index": 2,
+			"offset": 33,
+			"size": 14
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "user_profile",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 3,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "gender",
+				"def_num": 1,
+				"type_name": "gender",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "age",
+				"def_num": 2,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "height",
+				"def_num": 3,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "weight",
+				"def_num": 4,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "local_id",
+				"def_num": 22,
+				"type_name": "user_local_id",
+				"base_type_name": "uint16",
+				"size": 2
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 3,
+			"offset": 47,
+			"size": 24
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "user_profile",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "message_index",
+				"value": 0,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 0
+			},
+			{
+				"name": "gender",
+				"value": "male",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 1
+			},
+			{
+				"name": "age",
+				"value": 47,
+				"units": "years",
+				"def_num": 2,
+				"raw_value": 47
+			},
+			{
+				"name": "height",
+				"value": 1.79,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 179
+			},
+			{
+				"name": "weight",
+				"value": 71.0,
+				"units": "kg",
+				"def_num": 4,
+				"raw_value": 710
+			},
+			{
+				"name": "local_id",
+				"value": 5,
+				"units": "",
+				"def_num": 22,
+				"raw_value": 5
+			}
+		],
+		"chunk": {
+			"index": 4,
+			"offset": 71,
+			"size": 10
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "user_profile",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "message_index",
+				"value": 1,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 1
+			},
+			{
+				"name": "gender",
+				"value": "female",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 0
+			},
+			{
+				"name": "age",
+				"value": 52,
+				"units": "years",
+				"def_num": 2,
+				"raw_value": 52
+			},
+			{
+				"name": "height",
+				"value": 1.55,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 155
+			},
+			{
+				"name": "weight",
+				"value": 55.0,
+				"units": "kg",
+				"def_num": 4,
+				"raw_value": 550
+			},
+			{
+				"name": "local_id",
+				"value": 6,
+				"units": "",
+				"def_num": 22,
+				"raw_value": 6
+			}
+		],
+		"chunk": {
+			"index": 5,
+			"offset": 81,
+			"size": 10
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "weight_scale",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 30,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "weight",
+				"def_num": 0,
+				"type_name": "weight",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "percent_fat",
+				"def_num": 1,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "user_profile_index",
+				"def_num": 12,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 6,
+			"offset": 91,
+			"size": 18
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "device_info",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 23,
+		"endian": ">",
+		"field_defs": [
+			{
+				"name": "timestamp",
+				"def_num": 253,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "battery_voltage",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "cum_operating_time",
+				"def_num": 7,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 7,
+			"offset": 109,
+			"size": 15
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "weight_scale",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2009-09-09T21:38:00+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 621466680
+			},
+			{
+				"name": "weight",
+				"value": 75.8,
+				"units": "kg",
+				"def_num": 0,
+				"raw_value": 7580
+			},
+			{
+				"name": "percent_fat",
+				"value": 22.3,
+				"units": "%",
+				"def_num": 1,
+				"raw_value": 2230
+			},
+			{
+				"name": "user_profile_index",
+				"value": 0,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 8,
+			"offset": 124,
+			"size": 11
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "device_info",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2009-09-09T21:38:00+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 621466680
+			},
+			{
+				"name": "battery_voltage",
+				"value": 1.5,
+				"units": "V",
+				"def_num": 10,
+				"raw_value": 384
+			},
+			{
+				"name": "cum_operating_time",
+				"value": 45126,
+				"units": "s",
+				"def_num": 7,
+				"raw_value": 45126
+			}
+		],
+		"chunk": {
+			"index": 9,
+			"offset": 135,
+			"size": 11
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "weight_scale",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2009-09-09T22:38:00+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 621470280
+			},
+			{
+				"name": "weight",
+				"value": 58.2,
+				"units": "kg",
+				"def_num": 0,
+				"raw_value": 5820
+			},
+			{
+				"name": "percent_fat",
+				"value": 25.1,
+				"units": "%",
+				"def_num": 1,
+				"raw_value": 2510
+			},
+			{
+				"name": "user_profile_index",
+				"value": 1,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 10,
+			"offset": 146,
+			"size": 11
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "device_info",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "timestamp",
+				"value": "2009-09-09T22:38:00+00:00",
+				"units": "",
+				"def_num": 253,
+				"raw_value": 621470280
+			},
+			{
+				"name": "battery_voltage",
+				"value": 1.5,
+				"units": "V",
+				"def_num": 10,
+				"raw_value": 384
+			},
+			{
+				"name": "cum_operating_time",
+				"value": 45158,
+				"units": "s",
+				"def_num": 7,
+				"raw_value": 45158
+			}
+		],
+		"chunk": {
+			"index": 11,
+			"offset": 157,
+			"size": 11
+		}
+	},
+	{
+		"frame_type": "crc",
+		"crc": "0x8004",
+		"matched": true,
+		"chunk": {
+			"index": 12,
+			"offset": 168,
+			"size": 2
+		}
+	}
+]

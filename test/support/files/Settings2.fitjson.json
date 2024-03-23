@@ -1,0 +1,5856 @@
+[
+	{
+		"frame_type": "header",
+		"header_size": 14,
+		"proto_ver": [
+			1,
+			0
+		],
+		"profile_ver": [
+			13,
+			0
+		],
+		"body_size": 1721,
+		"crc": "0x8bb1",
+		"crc_matched": true,
+		"chunk": {
+			"index": 0,
+			"offset": 0,
+			"size": 14
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 0,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "serial_number",
+				"def_num": 3,
+				"type_name": "uint32z",
+				"base_type_name": "uint32z",
+				"size": 4
+			},
+			{
+				"name": "time_created",
+				"def_num": 4,
+				"type_name": "date_time",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "manufacturer",
+				"def_num": 1,
+				"type_name": "manufacturer",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "product",
+				"def_num": 2,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "number",
+				"def_num": 5,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "type",
+				"def_num": 0,
+				"type_name": "file",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 1,
+			"offset": 14,
+			"size": 24
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "file_id",
+		"header": {
+			"local_mesg_num": 0,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "serial_number",
+				"value": 3889965805,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 3889965805
+			},
+			{
+				"name": "time_created",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "manufacturer",
+				"value": "garmin",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 1
+			},
+			{
+				"name": "garmin_product",
+				"value": "edge510",
+				"units": "",
+				"def_num": 2,
+				"raw_value": 1561
+			},
+			{
+				"name": "number",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "type",
+				"value": "settings",
+				"units": "",
+				"def_num": 0,
+				"raw_value": 2
+			}
+		],
+		"chunk": {
+			"index": 2,
+			"offset": 38,
+			"size": 16
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "file_creator",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 49,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "software_version",
+				"def_num": 0,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "hardware_version",
+				"def_num": 1,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 3,
+			"offset": 54,
+			"size": 12
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "file_creator",
+		"header": {
+			"local_mesg_num": 1,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "software_version",
+				"value": 340,
+				"units": "",
+				"def_num": 0,
+				"raw_value": 340
+			},
+			{
+				"name": "hardware_version",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			}
+		],
+		"chunk": {
+			"index": 4,
+			"offset": 66,
+			"size": 4
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "device_settings",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 2,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "utc_offset",
+				"def_num": 1,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "time_offset",
+				"def_num": 2,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "active_time_zone",
+				"def_num": 0,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "unknown_3",
+				"def_num": 3,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "time_mode",
+				"def_num": 4,
+				"type_name": "time_mode",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "time_zone_offset",
+				"def_num": 5,
+				"type_name": "sint8",
+				"base_type_name": "sint8",
+				"size": 1
+			},
+			{
+				"name": "unknown_10",
+				"def_num": 10,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_11",
+				"def_num": 11,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "backlight_mode",
+				"def_num": 12,
+				"type_name": "backlight_mode",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_13",
+				"def_num": 13,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "unknown_14",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "unknown_15",
+				"def_num": 15,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "unknown_16",
+				"def_num": 16,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_17",
+				"def_num": 17,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_18",
+				"def_num": 18,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_21",
+				"def_num": 21,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_22",
+				"def_num": 22,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_26",
+				"def_num": 26,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_27",
+				"def_num": 27,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_29",
+				"def_num": 29,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_52",
+				"def_num": 52,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_53",
+				"def_num": 53,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 5,
+			"offset": 70,
+			"size": 72
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "device_settings",
+		"header": {
+			"local_mesg_num": 2,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "utc_offset",
+				"value": 0,
+				"units": "",
+				"def_num": 1,
+				"raw_value": 0
+			},
+			{
+				"name": "time_offset",
+				"value": 0,
+				"units": "s",
+				"def_num": 2,
+				"raw_value": 0
+			},
+			{
+				"name": "active_time_zone",
+				"value": 0,
+				"units": "",
+				"def_num": 0,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_3",
+				"value": 0,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "time_mode",
+				"value": "hour12",
+				"units": "",
+				"def_num": 4,
+				"raw_value": 0
+			},
+			{
+				"name": "time_zone_offset",
+				"value": 0.0,
+				"units": "hr",
+				"def_num": 5,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_10",
+				"value": 3,
+				"units": "",
+				"def_num": 10,
+				"raw_value": 3
+			},
+			{
+				"name": "unknown_11",
+				"value": 0,
+				"units": "",
+				"def_num": 11,
+				"raw_value": 0
+			},
+			{
+				"name": "backlight_mode",
+				"value": "key_and_messages",
+				"units": "",
+				"def_num": 12,
+				"raw_value": 2
+			},
+			{
+				"name": "unknown_13",
+				"value": 0,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_14",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_15",
+				"value": 50,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 50
+			},
+			{
+				"name": "unknown_16",
+				"value": null,
+				"units": "",
+				"def_num": 16,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_17",
+				"value": null,
+				"units": "",
+				"def_num": 17,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_18",
+				"value": null,
+				"units": "",
+				"def_num": 18,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_21",
+				"value": 1,
+				"units": "",
+				"def_num": 21,
+				"raw_value": 1
+			},
+			{
+				"name": "unknown_22",
+				"value": 0,
+				"units": "",
+				"def_num": 22,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_26",
+				"value": 254,
+				"units": "",
+				"def_num": 26,
+				"raw_value": 254
+			},
+			{
+				"name": "unknown_27",
+				"value": 0,
+				"units": "",
+				"def_num": 27,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_29",
+				"value": 0,
+				"units": "",
+				"def_num": 29,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_52",
+				"value": 0,
+				"units": "",
+				"def_num": 52,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_53",
+				"value": 1,
+				"units": "",
+				"def_num": 53,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 6,
+			"offset": 142,
+			"size": 29
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "user_profile",
+		"header": {
+			"local_mesg_num": 3,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 3,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "friendly_name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 8
+			},
+			{
+				"name": "weight",
+				"def_num": 4,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "gender",
+				"def_num": 1,
+				"type_name": "gender",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "age",
+				"def_num": 2,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "height",
+				"def_num": 3,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "language",
+				"def_num": 5,
+				"type_name": "language",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "elev_setting",
+				"def_num": 6,
+				"type_name": "display_measure",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "weight_setting",
+				"def_num": 7,
+				"type_name": "display_measure",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "resting_heart_rate",
+				"def_num": 8,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "default_max_biking_heart_rate",
+				"def_num": 10,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "default_max_heart_rate",
+				"def_num": 11,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "hr_setting",
+				"def_num": 12,
+				"type_name": "display_heart",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "speed_setting",
+				"def_num": 13,
+				"type_name": "display_measure",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "dist_setting",
+				"def_num": 14,
+				"type_name": "display_measure",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "power_setting",
+				"def_num": 16,
+				"type_name": "display_power",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "activity_class",
+				"def_num": 17,
+				"type_name": "activity_class",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "position_setting",
+				"def_num": 18,
+				"type_name": "display_position",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "temperature_setting",
+				"def_num": 21,
+				"type_name": "display_measure",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "unknown_24",
+				"def_num": 24,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 7,
+			"offset": 171,
+			"size": 63
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "user_profile",
+		"header": {
+			"local_mesg_num": 3,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "friendly_name",
+				"value": "edge510",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "edge510"
+			},
+			{
+				"name": "weight",
+				"value": 78.0,
+				"units": "kg",
+				"def_num": 4,
+				"raw_value": 780
+			},
+			{
+				"name": "gender",
+				"value": "male",
+				"units": "",
+				"def_num": 1,
+				"raw_value": 1
+			},
+			{
+				"name": "age",
+				"value": 41,
+				"units": "years",
+				"def_num": 2,
+				"raw_value": 41
+			},
+			{
+				"name": "height",
+				"value": 1.83,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 183
+			},
+			{
+				"name": "language",
+				"value": "english",
+				"units": "",
+				"def_num": 5,
+				"raw_value": 0
+			},
+			{
+				"name": "elev_setting",
+				"value": "metric",
+				"units": "",
+				"def_num": 6,
+				"raw_value": 0
+			},
+			{
+				"name": "weight_setting",
+				"value": "metric",
+				"units": "",
+				"def_num": 7,
+				"raw_value": 0
+			},
+			{
+				"name": "resting_heart_rate",
+				"value": 60,
+				"units": "bpm",
+				"def_num": 8,
+				"raw_value": 60
+			},
+			{
+				"name": "default_max_biking_heart_rate",
+				"value": 185,
+				"units": "bpm",
+				"def_num": 10,
+				"raw_value": 185
+			},
+			{
+				"name": "default_max_heart_rate",
+				"value": 185,
+				"units": "bpm",
+				"def_num": 11,
+				"raw_value": 185
+			},
+			{
+				"name": "hr_setting",
+				"value": "max",
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "speed_setting",
+				"value": "metric",
+				"units": "",
+				"def_num": 13,
+				"raw_value": 0
+			},
+			{
+				"name": "dist_setting",
+				"value": "metric",
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "power_setting",
+				"value": "percent_ftp",
+				"units": "",
+				"def_num": 16,
+				"raw_value": 1
+			},
+			{
+				"name": "activity_class",
+				"value": 168,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 168
+			},
+			{
+				"name": "position_setting",
+				"value": "degree_minute_second",
+				"units": "",
+				"def_num": 18,
+				"raw_value": 2
+			},
+			{
+				"name": "temperature_setting",
+				"value": "metric",
+				"units": "",
+				"def_num": 21,
+				"raw_value": 0
+			},
+			{
+				"name": "unknown_24",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			}
+		],
+		"chunk": {
+			"index": 8,
+			"offset": 234,
+			"size": 28
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "hrm_profile",
+		"header": {
+			"local_mesg_num": 4,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 4,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "hrm_ant_id",
+				"def_num": 1,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "enabled",
+				"def_num": 0,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "hrm_ant_id_trans_type",
+				"def_num": 3,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 9,
+			"offset": 262,
+			"size": 18
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "hrm_profile",
+		"header": {
+			"local_mesg_num": 4,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "message_index",
+				"value": 0,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 0
+			},
+			{
+				"name": "hrm_ant_id",
+				"value": 50008,
+				"units": "",
+				"def_num": 1,
+				"raw_value": 50008
+			},
+			{
+				"name": "enabled",
+				"value": true,
+				"units": "",
+				"def_num": 0,
+				"raw_value": 1
+			},
+			{
+				"name": "hrm_ant_id_trans_type",
+				"value": 1,
+				"units": "",
+				"def_num": 3,
+				"raw_value": 1
+			}
+		],
+		"chunk": {
+			"index": 10,
+			"offset": 280,
+			"size": 7
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 5,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 6,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 4
+			},
+			{
+				"name": "odometer",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "front_gear",
+				"def_num": 39,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 4
+			},
+			{
+				"name": "rear_gear",
+				"def_num": 41,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 12
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"def_num": 4,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"def_num": 5,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"def_num": 6,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_power_ant_id",
+				"def_num": 7,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "custom_wheelsize",
+				"def_num": 8,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "auto_wheelsize",
+				"def_num": 9,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_weight",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "power_cal_factor",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "unknown_42",
+				"def_num": 42,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "sport",
+				"def_num": 1,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 2,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_wheel_cal",
+				"def_num": 12,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"def_num": 13,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "id",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spd_enabled",
+				"def_num": 15,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cad_enabled",
+				"def_num": 16,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spdcad_enabled",
+				"def_num": 17,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "power_enabled",
+				"def_num": 18,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "crank_length",
+				"def_num": 19,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "enabled",
+				"def_num": 20,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"def_num": 21,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"def_num": 22,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"def_num": 23,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"def_num": 24,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_35",
+				"def_num": 35,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 3
+			},
+			{
+				"name": "unknown_36",
+				"def_num": 36,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "odometer_rollover",
+				"def_num": 37,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "front_gear_num",
+				"def_num": 38,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "rear_gear_num",
+				"def_num": 40,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_43",
+				"def_num": 43,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"def_num": 44,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 11,
+			"offset": 287,
+			"size": 114
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 5,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "EVO",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "EVO"
+			},
+			{
+				"name": "odometer",
+				"value": 457191.72,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 45719172
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 0,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": 47617,
+				"units": "",
+				"def_num": 7,
+				"raw_value": 47617
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 8.0,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 80
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": true,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 1
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": true,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": 5,
+				"units": "",
+				"def_num": 24,
+				"raw_value": 5
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 12,
+			"offset": 401,
+			"size": 69
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 6,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 6,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 5
+			},
+			{
+				"name": "odometer",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "front_gear",
+				"def_num": 39,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 4
+			},
+			{
+				"name": "rear_gear",
+				"def_num": 41,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 12
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"def_num": 4,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"def_num": 5,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"def_num": 6,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_power_ant_id",
+				"def_num": 7,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "custom_wheelsize",
+				"def_num": 8,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "auto_wheelsize",
+				"def_num": 9,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_weight",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "power_cal_factor",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "unknown_42",
+				"def_num": 42,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "sport",
+				"def_num": 1,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 2,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_wheel_cal",
+				"def_num": 12,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"def_num": 13,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "id",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spd_enabled",
+				"def_num": 15,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cad_enabled",
+				"def_num": 16,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spdcad_enabled",
+				"def_num": 17,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "power_enabled",
+				"def_num": 18,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "crank_length",
+				"def_num": 19,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "enabled",
+				"def_num": 20,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"def_num": 21,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"def_num": 22,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"def_num": 23,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"def_num": 24,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_35",
+				"def_num": 35,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 3
+			},
+			{
+				"name": "unknown_36",
+				"def_num": 36,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "odometer_rollover",
+				"def_num": 37,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "front_gear_num",
+				"def_num": 38,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "rear_gear_num",
+				"def_num": 40,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_43",
+				"def_num": 43,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"def_num": 44,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 13,
+			"offset": 470,
+			"size": 114
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 6,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "P2SL",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "P2SL"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 1,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 1
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": 28209,
+				"units": "",
+				"def_num": 7,
+				"raw_value": 28209
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.0,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 90
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": true,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 1
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": true,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": 5,
+				"units": "",
+				"def_num": 24,
+				"raw_value": 5
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					118,
+					190
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					118,
+					190
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 14,
+			"offset": 584,
+			"size": 70
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 7,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 6,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 9
+			},
+			{
+				"name": "odometer",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "front_gear",
+				"def_num": 39,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 4
+			},
+			{
+				"name": "rear_gear",
+				"def_num": 41,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 12
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"def_num": 4,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"def_num": 5,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"def_num": 6,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_power_ant_id",
+				"def_num": 7,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "custom_wheelsize",
+				"def_num": 8,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "auto_wheelsize",
+				"def_num": 9,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_weight",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "power_cal_factor",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "unknown_42",
+				"def_num": 42,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "sport",
+				"def_num": 1,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 2,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_wheel_cal",
+				"def_num": 12,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"def_num": 13,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "id",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spd_enabled",
+				"def_num": 15,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cad_enabled",
+				"def_num": 16,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spdcad_enabled",
+				"def_num": 17,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "power_enabled",
+				"def_num": 18,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "crank_length",
+				"def_num": 19,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "enabled",
+				"def_num": 20,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"def_num": 21,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"def_num": 22,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"def_num": 23,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"def_num": 24,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_35",
+				"def_num": 35,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 3
+			},
+			{
+				"name": "unknown_36",
+				"def_num": 36,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "odometer_rollover",
+				"def_num": 37,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "front_gear_num",
+				"def_num": 38,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "rear_gear_num",
+				"def_num": 40,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_43",
+				"def_num": 43,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"def_num": 44,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 15,
+			"offset": 654,
+			"size": 114
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 7,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "LANGSTER",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "LANGSTER"
+			},
+			{
+				"name": "odometer",
+				"value": 12318.91,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 1231891
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 2,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": 10851,
+				"units": "",
+				"def_num": 7,
+				"raw_value": 10851
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": true,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 1
+			},
+			{
+				"name": "crank_length",
+				"value": 110.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 0
+			},
+			{
+				"name": "enabled",
+				"value": true,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": 5,
+				"units": "",
+				"def_num": 24,
+				"raw_value": 5
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 16,
+			"offset": 768,
+			"size": 74
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 8,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 6,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 2
+			},
+			{
+				"name": "odometer",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "front_gear",
+				"def_num": 39,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 4
+			},
+			{
+				"name": "rear_gear",
+				"def_num": 41,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 12
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"def_num": 4,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"def_num": 5,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"def_num": 6,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_power_ant_id",
+				"def_num": 7,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "custom_wheelsize",
+				"def_num": 8,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "auto_wheelsize",
+				"def_num": 9,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_weight",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "power_cal_factor",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "unknown_42",
+				"def_num": 42,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "sport",
+				"def_num": 1,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 2,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_wheel_cal",
+				"def_num": 12,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"def_num": 13,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "id",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spd_enabled",
+				"def_num": 15,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cad_enabled",
+				"def_num": 16,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spdcad_enabled",
+				"def_num": 17,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "power_enabled",
+				"def_num": 18,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "crank_length",
+				"def_num": 19,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "enabled",
+				"def_num": 20,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"def_num": 21,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"def_num": 22,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"def_num": 23,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"def_num": 24,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_35",
+				"def_num": 35,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 3
+			},
+			{
+				"name": "unknown_36",
+				"def_num": 36,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "odometer_rollover",
+				"def_num": 37,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "front_gear_num",
+				"def_num": 38,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "rear_gear_num",
+				"def_num": 40,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_43",
+				"def_num": 43,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"def_num": 44,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 17,
+			"offset": 842,
+			"size": 114
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 8,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "M",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "M"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					53,
+					39,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					53,
+					39,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 3,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 3
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": 31337,
+				"units": "",
+				"def_num": 7,
+				"raw_value": 31337
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": true,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 1
+			},
+			{
+				"name": "crank_length",
+				"value": 110.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 0
+			},
+			{
+				"name": "enabled",
+				"value": true,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": 5,
+				"units": "",
+				"def_num": 24,
+				"raw_value": 5
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 18,
+			"offset": 956,
+			"size": 67
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 9,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 6,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 7
+			},
+			{
+				"name": "odometer",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "front_gear",
+				"def_num": 39,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 4
+			},
+			{
+				"name": "rear_gear",
+				"def_num": 41,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 12
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"def_num": 4,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"def_num": 5,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"def_num": 6,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_power_ant_id",
+				"def_num": 7,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "custom_wheelsize",
+				"def_num": 8,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "auto_wheelsize",
+				"def_num": 9,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_weight",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "power_cal_factor",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "unknown_42",
+				"def_num": 42,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "sport",
+				"def_num": 1,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 2,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_wheel_cal",
+				"def_num": 12,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"def_num": 13,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "id",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spd_enabled",
+				"def_num": 15,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cad_enabled",
+				"def_num": 16,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spdcad_enabled",
+				"def_num": 17,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "power_enabled",
+				"def_num": 18,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "crank_length",
+				"def_num": 19,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "enabled",
+				"def_num": 20,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"def_num": 21,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"def_num": 22,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"def_num": 23,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"def_num": 24,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_35",
+				"def_num": 35,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 3
+			},
+			{
+				"name": "unknown_36",
+				"def_num": 36,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "odometer_rollover",
+				"def_num": 37,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "front_gear_num",
+				"def_num": 38,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "rear_gear_num",
+				"def_num": 40,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_43",
+				"def_num": 43,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"def_num": 44,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 19,
+			"offset": 1023,
+			"size": 114
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 9,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Bike 5",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "Bike 5"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 4,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 4
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 0
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": false,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 20,
+			"offset": 1137,
+			"size": 72
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 9,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Bike 6",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "Bike 6"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 5,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 5
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 0
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": false,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 21,
+			"offset": 1209,
+			"size": 72
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 9,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Bike 7",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "Bike 7"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 6,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 6
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 0
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": false,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 22,
+			"offset": 1281,
+			"size": 72
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 9,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Bike 8",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "Bike 8"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 7,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 7
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 0
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": false,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 23,
+			"offset": 1353,
+			"size": 72
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 9,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Bike 9",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "Bike 9"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 8,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 8
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 0
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": false,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 24,
+			"offset": 1425,
+			"size": 72
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 10,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 6,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 0,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 8
+			},
+			{
+				"name": "odometer",
+				"def_num": 3,
+				"type_name": "uint32",
+				"base_type_name": "uint32",
+				"size": 4
+			},
+			{
+				"name": "front_gear",
+				"def_num": 39,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 4
+			},
+			{
+				"name": "rear_gear",
+				"def_num": 41,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 12
+			},
+			{
+				"name": "message_index",
+				"def_num": 254,
+				"type_name": "message_index",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"def_num": 4,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"def_num": 5,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"def_num": 6,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "bike_power_ant_id",
+				"def_num": 7,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "custom_wheelsize",
+				"def_num": 8,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "auto_wheelsize",
+				"def_num": 9,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "bike_weight",
+				"def_num": 10,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "power_cal_factor",
+				"def_num": 11,
+				"type_name": "uint16",
+				"base_type_name": "uint16",
+				"size": 2
+			},
+			{
+				"name": "unknown_42",
+				"def_num": 42,
+				"type_name": "uint16z",
+				"base_type_name": "uint16z",
+				"size": 2
+			},
+			{
+				"name": "sport",
+				"def_num": 1,
+				"type_name": "sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "sub_sport",
+				"def_num": 2,
+				"type_name": "sub_sport",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_wheel_cal",
+				"def_num": 12,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"def_num": 13,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "id",
+				"def_num": 14,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spd_enabled",
+				"def_num": 15,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "cad_enabled",
+				"def_num": 16,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "spdcad_enabled",
+				"def_num": 17,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "power_enabled",
+				"def_num": 18,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "crank_length",
+				"def_num": 19,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "enabled",
+				"def_num": 20,
+				"type_name": "bool",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"def_num": 21,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"def_num": 22,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"def_num": 23,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"def_num": 24,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_35",
+				"def_num": 35,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 3
+			},
+			{
+				"name": "unknown_36",
+				"def_num": 36,
+				"type_name": "enum",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "odometer_rollover",
+				"def_num": 37,
+				"type_name": "uint8",
+				"base_type_name": "uint8",
+				"size": 1
+			},
+			{
+				"name": "front_gear_num",
+				"def_num": 38,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "rear_gear_num",
+				"def_num": 40,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "unknown_43",
+				"def_num": 43,
+				"type_name": "uint8z",
+				"base_type_name": "uint8z",
+				"size": 1
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"def_num": 44,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 25,
+			"offset": 1497,
+			"size": 114
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "bike_profile",
+		"header": {
+			"local_mesg_num": 10,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Bike 10",
+				"units": "",
+				"def_num": 0,
+				"raw_value": "Bike 10"
+			},
+			{
+				"name": "odometer",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 3,
+				"raw_value": 0
+			},
+			{
+				"name": "front_gear",
+				"value": [
+					39,
+					53,
+					null,
+					null
+				],
+				"units": "",
+				"def_num": 39,
+				"raw_value": [
+					39,
+					53,
+					null,
+					null
+				]
+			},
+			{
+				"name": "rear_gear",
+				"value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				],
+				"units": "",
+				"def_num": 41,
+				"raw_value": [
+					23,
+					21,
+					19,
+					18,
+					17,
+					16,
+					15,
+					14,
+					13,
+					12,
+					11,
+					null
+				]
+			},
+			{
+				"name": "message_index",
+				"value": 9,
+				"units": "",
+				"def_num": 254,
+				"raw_value": 9
+			},
+			{
+				"name": "bike_spd_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "custom_wheelsize",
+				"value": 2.096,
+				"units": "m",
+				"def_num": 8,
+				"raw_value": 2096
+			},
+			{
+				"name": "auto_wheelsize",
+				"value": 0.0,
+				"units": "m",
+				"def_num": 9,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_weight",
+				"value": 9.5,
+				"units": "kg",
+				"def_num": 10,
+				"raw_value": 95
+			},
+			{
+				"name": "power_cal_factor",
+				"value": 50.0,
+				"units": "%",
+				"def_num": 11,
+				"raw_value": 500
+			},
+			{
+				"name": "unknown_42",
+				"value": null,
+				"units": "",
+				"def_num": 42,
+				"raw_value": null
+			},
+			{
+				"name": "sport",
+				"value": null,
+				"units": "",
+				"def_num": 1,
+				"raw_value": null
+			},
+			{
+				"name": "sub_sport",
+				"value": null,
+				"units": "",
+				"def_num": 2,
+				"raw_value": null
+			},
+			{
+				"name": "auto_wheel_cal",
+				"value": true,
+				"units": "",
+				"def_num": 12,
+				"raw_value": 1
+			},
+			{
+				"name": "auto_power_zero",
+				"value": true,
+				"units": "",
+				"def_num": 13,
+				"raw_value": 1
+			},
+			{
+				"name": "id",
+				"value": 0,
+				"units": "",
+				"def_num": 14,
+				"raw_value": 0
+			},
+			{
+				"name": "spd_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 15,
+				"raw_value": 0
+			},
+			{
+				"name": "cad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 16,
+				"raw_value": 0
+			},
+			{
+				"name": "spdcad_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 17,
+				"raw_value": 0
+			},
+			{
+				"name": "power_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 18,
+				"raw_value": 0
+			},
+			{
+				"name": "crank_length",
+				"value": 237.0,
+				"units": "mm",
+				"def_num": 19,
+				"raw_value": 254
+			},
+			{
+				"name": "enabled",
+				"value": false,
+				"units": "",
+				"def_num": 20,
+				"raw_value": 0
+			},
+			{
+				"name": "bike_spd_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 21,
+				"raw_value": null
+			},
+			{
+				"name": "bike_cad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 22,
+				"raw_value": null
+			},
+			{
+				"name": "bike_spdcad_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 23,
+				"raw_value": null
+			},
+			{
+				"name": "bike_power_ant_id_trans_type",
+				"value": null,
+				"units": "",
+				"def_num": 24,
+				"raw_value": null
+			},
+			{
+				"name": "unknown_35",
+				"value": [
+					0,
+					50,
+					null
+				],
+				"units": "",
+				"def_num": 35,
+				"raw_value": [
+					0,
+					50,
+					null
+				]
+			},
+			{
+				"name": "unknown_36",
+				"value": 4,
+				"units": "",
+				"def_num": 36,
+				"raw_value": 4
+			},
+			{
+				"name": "odometer_rollover",
+				"value": null,
+				"units": "",
+				"def_num": 37,
+				"raw_value": null
+			},
+			{
+				"name": "front_gear_num",
+				"value": 2,
+				"units": "",
+				"def_num": 38,
+				"raw_value": 2
+			},
+			{
+				"name": "rear_gear_num",
+				"value": 11,
+				"units": "",
+				"def_num": 40,
+				"raw_value": 11
+			},
+			{
+				"name": "unknown_43",
+				"value": null,
+				"units": "",
+				"def_num": 43,
+				"raw_value": null
+			},
+			{
+				"name": "shimano_di2_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 44,
+				"raw_value": 0
+			}
+		],
+		"chunk": {
+			"index": 26,
+			"offset": 1611,
+			"size": 73
+		}
+	},
+	{
+		"frame_type": "definition_message",
+		"name": "connectivity",
+		"header": {
+			"local_mesg_num": 11,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"global_mesg_num": 127,
+		"endian": "<",
+		"field_defs": [
+			{
+				"name": "name",
+				"def_num": 3,
+				"type_name": "string",
+				"base_type_name": "string",
+				"size": 9
+			},
+			{
+				"name": "bluetooth_enabled",
+				"def_num": 0,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "live_tracking_enabled",
+				"def_num": 4,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "weather_conditions_enabled",
+				"def_num": 5,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "weather_alerts_enabled",
+				"def_num": 6,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "auto_activity_upload_enabled",
+				"def_num": 7,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "course_download_enabled",
+				"def_num": 8,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "workout_download_enabled",
+				"def_num": 9,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			},
+			{
+				"name": "gps_ephemeris_download_enabled",
+				"def_num": 10,
+				"type_name": "bool",
+				"base_type_name": "enum",
+				"size": 1
+			}
+		],
+		"dev_field_defs": [],
+		"chunk": {
+			"index": 27,
+			"offset": 1684,
+			"size": 33
+		}
+	},
+	{
+		"frame_type": "data_message",
+		"name": "connectivity",
+		"header": {
+			"local_mesg_num": 11,
+			"time_offset": null,
+			"is_developer_data": false
+		},
+		"fields": [
+			{
+				"name": "name",
+				"value": "Edge 510",
+				"units": "",
+				"def_num": 3,
+				"raw_value": "Edge 510"
+			},
+			{
+				"name": "bluetooth_enabled",
+				"value": false,
+				"units": "",
+				"def_num": 0,
+				"raw_value": 0
+			},
+			{
+				"name": "live_tracking_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 4,
+				"raw_value": null
+			},
+			{
+				"name": "weather_conditions_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 5,
+				"raw_value": null
+			},
+			{
+				"name": "weather_alerts_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 6,
+				"raw_value": null
+			},
+			{
+				"name": "auto_activity_upload_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 7,
+				"raw_value": null
+			},
+			{
+				"name": "course_download_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 8,
+				"raw_value": null
+			},
+			{
+				"name": "workout_download_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 9,
+				"raw_value": null
+			},
+			{
+				"name": "gps_ephemeris_download_enabled",
+				"value": null,
+				"units": "",
+				"def_num": 10,
+				"raw_value": null
+			}
+		],
+		"chunk": {
+			"index": 28,
+			"offset": 1717,
+			"size": 18
+		}
+	},
+	{
+		"frame_type": "crc",
+		"crc": "0xef09",
+		"matched": true,
+		"chunk": {
+			"index": 29,
+			"offset": 1735,
+			"size": 2
+		}
+	}
+]

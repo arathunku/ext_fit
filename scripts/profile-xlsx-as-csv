@@ -1,0 +1,23 @@
+#!/usr/bin/env nix-shell
+#!nix-shell -p libreoffice bash -i "bash"
+
+# vim: ft=bash
+# shellcheck shell=bash
+
+set -e
+
+version="${1:-21.126.00}"
+profile_xlsx="./sdks/fit-sdk-${version:?}/Profile.xlsx"
+
+if [[ ! -f "${profile_xlsx}" ]]; then
+  echo "Missing profile.xlsx for SDK version=${version}"
+  exit 1
+fi
+
+set -xe
+
+mkdir -p "./sdks/profile-${version:?}"
+# # https://help.libreoffice.org/latest/en-GB/text/shared/guide/csv_params.html
+soffice --headless \
+  --convert-to csv:"Text - txt - csv (StarCalc)":44,34,UTF8,1,,0,false,true,false,false,false,-1 \
+  --outdir "./sdks/profile-${version:?}" "${profile_xlsx}"
