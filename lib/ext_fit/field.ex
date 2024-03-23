@@ -9,7 +9,12 @@ defmodule ExtFit.Field do
   Returns field's name. If field is known it will return its atom name, if field is unknown
   it returns `"unknown_\#{num}"`.
   """
-  @type field :: ExtFit.Types.Subfield.t() | ExtFit.Types.Field.t() | ExtFit.Types.FieldData.t() | ExtFit.Types.FieldDefinition.t() | ExtFit.Types.DevFieldDefinition.t() 
+  @type field ::
+          ExtFit.Types.Subfield.t()
+          | ExtFit.Types.Field.t()
+          | ExtFit.Types.FieldData.t()
+          | ExtFit.Types.FieldDefinition.t()
+          | ExtFit.Types.DevFieldDefinition.t()
 
   @spec name(field) :: atom() | String.t()
   def name(%{field: %{name: name}} = _field), do: name

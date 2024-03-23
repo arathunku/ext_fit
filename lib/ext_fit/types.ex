@@ -98,7 +98,7 @@ defmodule ExtFit.Types.DevField do
           native_field_num: non_neg_integer(),
           dev_data_index: non_neg_integer(),
           units: nil | String.t(),
-          type: ExtFit.Types.BaseType.t(),
+          type: ExtFit.Types.BaseType.t()
         }
 end
 

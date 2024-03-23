@@ -251,21 +251,21 @@ defmodule ExtFit.Profile do
       defstruct num: @num, name: @name, fields: @fields
 
       @fields_table_doc @fields
-                    |> Enum.sort_by(fn {_, %{num: num}} -> num end)
-                    |> Enum.map(fn {name, field} ->
-                      [
-                        "| " <> to_string(name),
-                        field.type.name,
-                        field.num,
-                        field.scale,
-                        field.offset,
-                        field.units,
-                        to_string(field.array) <> " |"
-                      ]
-                      |> Enum.map(&(&1 || ""))
-                      |> Enum.join(" | ")
-                    end)
-                    |> Enum.join("\n")
+                        |> Enum.sort_by(fn {_, %{num: num}} -> num end)
+                        |> Enum.map(fn {name, field} ->
+                          [
+                            "| " <> to_string(name),
+                            field.type.name,
+                            field.num,
+                            field.scale,
+                            field.offset,
+                            field.units,
+                            to_string(field.array) <> " |"
+                          ]
+                          |> Enum.map(&(&1 || ""))
+                          |> Enum.join(" | ")
+                        end)
+                        |> Enum.join("\n")
       @moduledoc """
 
       Message: `:#{@name}` identified by num=#{@num}
