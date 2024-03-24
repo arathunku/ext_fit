@@ -5,7 +5,8 @@ Mix.install([
   {:ext_fit, path: "./"},
   {:kino_maplibre, "~> 0.1.11"},
   {:req, "~> 0.4.0"},
-  {:kino_vega_lite, "~> 0.1.10"}
+  {:kino_vega_lite, "~> 0.1.10"},
+  {:geocalc, "~> 0.8"}
 ])
 ```
 
@@ -19,14 +20,13 @@ records =
   |> File.read!()
   |> ExtFit.Decode.decode!()
 
-IO.inspect(Record.debug(Enum.at(records, 2)))
 record_msgs = Record.records_by_message(records, :record)
 
-length(records)
+IO.puts("Decoded #{length(records)} records from FIT file")
 ```
 
 ```elixir
-geolocations =
+points =
   record_msgs
   |> Enum.map(fn record ->
     with [%{value: plat}] when not is_nil(plat) <- Record.fields_by_name(record, :position_lat),
@@ -38,9 +38,13 @@ geolocations =
   end)
   |> Enum.filter(&(&1 != nil))
 
+pstart = Enum.at(points, 0)
+pend = Enum.at(points, -1)
+
 MapLibre.new(
-  center: Enum.at(geolocations, trunc(length(gelocations) / 2)),
+  center: Geocalc.geographic_center(points),
   zoom: 10,
+  # key takens from official LiveBook examples, use your own!
   style: "https://api.maptiler.com/maps/basic/style.json?key=Q4UbchekCfyvXvZcWRoU"
 )
 |> MapLibre.add_source("route",
@@ -49,10 +53,12 @@ MapLibre.new(
     type: "Feature",
     geometry: [
       type: "LineString",
-      coordinates: gelocations
+      coordinates: points
     ]
   ]
 )
+|> Kino.MapLibre.add_marker(pstart, color: "#65a30d")
+|> Kino.MapLibre.add_marker(pend, color: "#dc2626")
 |> MapLibre.add_layer(
   id: "route",
   type: :line,
@@ -62,53 +68,169 @@ MapLibre.new(
     line_cap: "round"
   ],
   paint: [
-    line_color: "#000",
-    line_width: 2
+    line_color: "#f87171",
+    line_width: 4
   ]
 )
 |> Kino.MapLibre.new()
 ```
 
 ```elixir
-fields = [:distance, :timestamp, :heart_rate, :enhanced_altitude]
+alias ExtFit.{Record, Types, Field}
 
-dataframe =
-  record_msgs
-  |> Enum.reduce(%{}, fn record, acc ->
-    fields
-    |> Enum.reduce(acc, fn field_name, acc ->
-      values = Map.get(acc, field_name, [])
+friendly_name = fn name ->
+  "#{name}"
+  |> String.split("_", trim: true)
+  |> Enum.join(" ")
+  |> String.capitalize()
+  |> String.replace(~r/\bgps\b/i, "GPS")
+  |> String.replace(~r/\bhr\b/i, "HR")
+  |> String.replace(~r/\bpwr\b/i, "PWR")
+  |> String.replace(~r/\bhrv\b/i, "HRV")
+  |> String.replace(~r/\bid\b/i, "ID")
+  |> String.replace(~r/\bcum\b/i, "cumulative")
+end
 
-      value =
-        case Record.fields_by_name(record, field_name) do
-          [%{value: value}] when is_integer(value) ->
-            value
+drop_headers_without_values = fn headers, records ->
+  headers
+  |> Enum.filter(fn {name, _} ->
+    !!Enum.find(records, &(Map.get(&1, name) != nil))
+  end)
+  |> Enum.into(%{})
+end
 
-          [%{value: value}] when is_float(value) ->
-            Float.round(value) |> trunc()
+# Generate map with msg names as keys and as values, number of records and all matching
+# data for given msg names. In FIT files, the same msg may appear multiple times
+# with different set of fields which makes it more complicated to work with as maps
+summary =
+  records
+  |> Enum.reduce(%{}, fn
+    %Record.FitData{def_mesg: %{mesg_type: %{} = mesg_type}, fields: fields}, state ->
+      msg_name = to_string(mesg_type.name)
 
-          [%{value: value}] ->
-            value
+      state =
+        state
+        |> Map.put_new_lazy(msg_name, fn ->
+          %{
+            name: friendly_name.(mesg_type.name),
+            id: msg_name,
+            headers: %{},
+            records_count: 0,
+            records: []
+          }
+        end)
 
-          _ ->
-            nil
-        end
+      %{headers: headers} =
+        Enum.reduce(
+          fields,
+          %{
+            headers: get_in(state, [to_string(mesg_type.name), Access.key(:headers)])
+          },
+          fn
+            %Types.FieldData{field: nil}, acc ->
+              acc
 
-      Map.put(acc, field_name, [value | values])
+            %Types.FieldData{field: %{name: name, units: units}}, %{headers: headers} = acc ->
+              %{
+                acc
+                | headers:
+                    Map.put_new_lazy(headers, name, fn ->
+                      friendly_name.(name) <>
+                        ((units && " (#{units})") || "")
+                    end)
+              }
+          end
+        )
+
+      state =
+        put_in(state, [to_string(mesg_type.name), :headers], headers)
+
+      record =
+        Enum.reduce(fields, %{}, fn
+          %Types.FieldData{
+            value: value,
+            value_label: value_label,
+            raw_value: raw_value,
+            field: %{name: name, units: units}
+          },
+          record ->
+            value =
+              value_label ||
+                cond do
+                  (units == nil || units in ~w(m)) && is_float(value) ->
+                    Float.round(value, 4)
+
+                  true ->
+                    value || raw_value
+                end
+
+            Map.put(record, name, value)
+
+          _, record ->
+            record
+        end)
+
+      update_in(state, [to_string(mesg_type.name), :records], &[record | &1])
+
+    _, state ->
+      state
+  end)
+  |> Enum.sort_by(&elem(&1, 1).name)
+  |> Enum.map(fn {key, %{records: records, headers: headers} = message} ->
+    headers = drop_headers_without_values.(headers, records)
+
+    {key,
+     %{
+       message
+       | records:
+           Enum.reverse(records)
+           |> Enum.map(fn record ->
+             headers
+             |> Enum.reduce(%{}, fn {name, friendly_name}, new_record ->
+               # ensure every record has all the same keys for all headers
+               # this makes it work nicely with Kino.DataTable
+               Map.put(new_record, name, %{
+                 value: Map.get(record, name) || nil,
+                 name: friendly_name
+               })
+             end)
+           end),
+         records_count: length(records),
+         headers: headers
+     }}
+  end)
+  |> Enum.into(%{})
+```
+
+```elixir
+summary
+|> Enum.map(fn {_, msg} ->
+  rows =
+    msg.records
+    |> Enum.map(fn record ->
+      Enum.map(record, fn {_, %{name: name, value: value}} ->
+        {name, value || "-"}
+      end)
     end)
-  end)
-  |> then(fn values ->
-    values
-    |> Enum.map(fn {key, values} -> {key, Enum.reverse(values)} end)
-    |> Enum.into(%{})
-  end)
+
+  {"#{msg.name} (#{msg.records_count})", Kino.DataTable.new(rows, sorting_enabled: false)}
+end)
+|> Kino.Layout.tabs()
 ```
 
 ```elixir
 alias VegaLite, as: Vl
 
-Vl.new(width: 700, height: 300, title: "Overview")
-|> Vl.data_from_values(dataframe, only: ["distance", "heart_rate", "enhanced_altitude"])
+records_dataframe_ =
+  summary["record"].records
+  |> Enum.map(fn record ->
+    Enum.map(record, fn {id, %{value: value}} ->
+      {id, value}
+    end)
+  end)
+
+Vl.new(width: 700, height: 300, title: "HR")
+|> Vl.data_from_values(records_dataframe_, only: ["distance", "heart_rate"])
 |> Vl.mark(:point, tooltip: %{content: "data"})
 |> Vl.encode_field(:x, "distance", type: :quantitative)
 |> Vl.encode_field(:y, "heart_rate", type: :quantitative, title: "HR")
