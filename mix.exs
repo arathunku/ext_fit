@@ -100,9 +100,7 @@ defmodule ExtFit.MixProject do
         Changelog: "https://hexdocs.pm/ext_fit/changelog.html",
         GitHub: "https://github.com/arathunku/ext_fit"
       },
-      files:
-        ~w(lib priv) ++
-          ~w(CHANGELOG.md LICENSE.md mix.exs README.md .formatter.exs)
+      files: ~w(lib CHANGELOG.md LICENSE.md mix.exs README.md .formatter.exs)
     ]
   end
 end
