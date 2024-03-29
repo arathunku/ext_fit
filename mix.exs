@@ -72,9 +72,24 @@ defmodule ExtFit.MixProject do
     [
       source_ref: "v#{@version}",
       source_url: "https://github.com/arathunku/ext_fit",
-      # extra_section: "GUIDES",
+      extras: extras(),
+      groups_for_extras: [
+        Examples: Path.wildcard("examples/*")
+      ],
+      formatters: ["html"],
+      main: "readme",
       skip_undefined_reference_warnings_on: ["CHANGELOG.md"]
     ]
+  end
+
+  def extras do
+    [
+      "README.md": [title: "Overview"],
+      "CHANGELOG.md": [title: "Changelog"],
+      "CONTRIBUTING.md": [title: "Contributing"],
+      "LICENSE.md": [title: "License"],
+      "TODO.md": [title: "TODO"]
+    ] ++ Path.wildcard("examples/*.livemd")
   end
 
   defp package do

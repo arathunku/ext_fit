@@ -1,6 +1,11 @@
-<!-- @moduledoc -->
-
 # ExtFit
+
+[![Actions Status](https://github.com/arathunku/ext_fit/actions/workflows/elixir-build-and-test.yml/badge.svg)](https://github.com/arathunku/ext_fit/actions/workflows/elixir-build-and-test.yml) 
+[![Hex.pm](https://img.shields.io/hexpm/v/ext_fit.svg?style=flat)](https://hex.pm/packages/ext_fit)
+[![Documentation](https://img.shields.io/badge/hex-docs-lightgreen.svg?style=flat)](https://hexdocs.pm/ext_fit)
+[![License](https://img.shields.io/hexpm/l/ext_fit.svg?style=flat)](https://github.com/arathunku/ext_fit/blob/main/LICENSE.md)
+
+<!-- @moduledoc -->
 
 `.fit` file decoder. See `ExtFit.Decode` module for more details and usage.
 
@@ -8,27 +13,6 @@ It's still in alpha-release and there's a slim chance that the format of returne
 structs will change but if possible, will be avoided.
 
 Currently used FIT profile can be seen in `ExtFit.Profile.Types` file.
-
-## TODOs
-
-Decoder is usable but there's still a lot to do!
-
-Any help would be highly appreciated!
-
-- **!!!!! Creating and writing .fit files, this library doesn't have encoder**
-- Calculate CRC values
-- Streaming out processed records
-- Option to decode only specific messages. Example: [{:hr}]
-- Option to decode only specific fields: Example: {nil, :avg_speed"} or {:lap, :avg_speed}
-- Option to skip CRC calculation
-- Option to skip unknown records or fields
-- Performance - unroll some of the decoding, take a look at how JSON decoders are optimized
-- Helper to convert output to dataframes for usage in smart cells
-- TBD: Replace all floats with Decimals? Probably not, couldn't be done via Processor
-- TBD: Replace Field.name() and Record.name() with names directly in structs?
-- Wrap in [burrito](https://github.com/burrito-elixir/burrito) and provide CLI
-
-<!-- @moduledoc -->
 
 ## Installation
 
@@ -43,7 +27,22 @@ def deps do
 end
 ```
 
+## Usage
+
+```elixir
+{:ok, records} =
+  "my-file.fit"
+  |> File.read!()
+  |> ExtFit.Decode.decode()
+
+# print first record
+hd(record)
+```
+
 The docs can be found at <https://hexdocs.pm/ext_fit>.
+
+FIT structs are very large, you might want to take a look at
+[examples](https://github.com/arathunku/ext_fit/tree/main/examples) first!
 
 ## Contributing
 
