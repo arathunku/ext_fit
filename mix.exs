@@ -16,7 +16,7 @@ defmodule ExtFit.MixProject do
       homepage_url: "https://github.com/arathunku/ext_fit",
       docs: &docs/0,
       description: """
-      `.fit` file decoder
+        Garmin FIT file decoder
       """,
       aliases: aliases(),
       test_coverage: [tool: ExCoveralls],
