@@ -10,7 +10,7 @@ Mix.install([
 ])
 ```
 
-## FIT Intake
+## FIT Decode
 
 ```elixir
 alias ExtFit.{Record, Field}
@@ -24,6 +24,8 @@ record_msgs = Record.records_by_message(records, :record)
 
 IO.puts("Decoded #{length(records)} records from FIT file")
 ```
+
+## Map based on GPS
 
 ```elixir
 points =
@@ -74,6 +76,8 @@ MapLibre.new(
 )
 |> Kino.MapLibre.new()
 ```
+
+## Prepare records for DataView
 
 ```elixir
 alias ExtFit.{Record, Types, Field}
@@ -202,6 +206,8 @@ summary =
   |> Enum.into(%{})
 ```
 
+## Inspect
+
 ```elixir
 summary
 |> Enum.map(fn {_, msg} ->
@@ -217,6 +223,8 @@ summary
 end)
 |> Kino.Layout.tabs()
 ```
+
+## Graphs!
 
 ```elixir
 alias VegaLite, as: Vl
