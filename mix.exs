@@ -97,6 +97,7 @@ defmodule ExtFit.MixProject do
       maintainers: ["@arathunku"],
       licenses: ["MIT"],
       links: %{
+        Changelog: "https://hexdocs.pm/ext_fit/changelog.html",
         GitHub: "https://github.com/arathunku/ext_fit"
       },
       files:
