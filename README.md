@@ -44,6 +44,10 @@ The docs can be found at <https://hexdocs.pm/ext_fit>.
 FIT structs are very large, you might want to take a look at
 [examples](https://github.com/arathunku/ext_fit/tree/main/examples) first!
 
+https://github.com/arathunku/ext_fit/assets/749393/4c16c3ff-ba47-472b-9323-c9285842c2a8
+
+(may not be visible on hexdocs, see [GitHub README](https://github.com/arathunku/ext_fit/tree/main?tab=readme-ov-file#usage))
+
 ## Contributing
 
 Before contributing to this project, please read the CONTRIBUTING.md.
