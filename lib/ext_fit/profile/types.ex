@@ -1,5 +1,7 @@
 defmodule ExtFit.Profile.Types do
+  @moduledoc false
   use ExtFit.Profile, :types
+
   @version "21.126.00"
   type(:mesg_num, :uint16, [
     {0, "file_id"},
@@ -106,8 +108,8 @@ defmodule ExtFit.Profile.Types do
     {371, "hrv_value"},
     {375, "device_aux_battery_info"},
     {393, "dive_apnea_alarm"},
-    {65280, "mfg_range_min", %{comment: "0xFF00 - 0xFFFE reserved for manufacturer specific messages"}},
-    {65534, "mfg_range_max", %{comment: "0xFF00 - 0xFFFE reserved for manufacturer specific messages"}}
+    {65_280, "mfg_range_min", %{comment: "0xFF00 - 0xFFFE reserved for manufacturer specific messages"}},
+    {65_534, "mfg_range_max", %{comment: "0xFF00 - 0xFFFE reserved for manufacturer specific messages"}}
   ])
 
   type(:activity_subtype, :enum, [
@@ -234,18 +236,18 @@ defmodule ExtFit.Profile.Types do
   ])
 
   type(:course_capabilities, :uint32z, [
-    {1, "processed"},
-    {2, "valid"},
-    {4, "time"},
-    {8, "distance"},
-    {16, "position"},
-    {32, "heart_rate"},
-    {64, "power"},
-    {128, "cadence"},
-    {256, "training"},
-    {512, "navigation"},
-    {1024, "bikeway"},
-    {4096, "aviation", %{comment: "Denote course files to be used as flight plans"}}
+    {0x1, "processed"},
+    {0x2, "valid"},
+    {0x4, "time"},
+    {0x8, "distance"},
+    {0x10, "position"},
+    {0x20, "heart_rate"},
+    {0x40, "power"},
+    {0x80, "cadence"},
+    {0x100, "training"},
+    {0x200, "navigation"},
+    {0x400, "bikeway"},
+    {0x1000, "aviation", %{comment: "Denote course files to be used as flight plans"}}
   ])
 
   type(:turn_type, :enum, [
@@ -304,10 +306,10 @@ defmodule ExtFit.Profile.Types do
   type(:backlight_timeout, :uint8, [{0, "infinite", %{comment: "Backlight stays on forever."}}])
 
   type(:ant_channel_id, :uint32z, [
-    {65535, "ant_device_number"},
-    {16_711_680, "ant_device_type"},
-    {251_658_240, "ant_transmission_type_lower_nibble"},
-    {4_026_531_840, "ant_extended_device_number_upper_nibble"}
+    {0x0000FFFF, "ant_device_number"},
+    {0x00FF0000, "ant_device_type"},
+    {0x0F000000, "ant_transmission_type_lower_nibble"},
+    {0xF0000000, "ant_extended_device_number_upper_nibble"}
   ])
 
   type(:wkt_step_duration, :enum, [
@@ -844,18 +846,18 @@ defmodule ExtFit.Profile.Types do
     {4442, "descent_t2"},
     {4472, "marq_gen2_commander"},
     {4556, "d2_mach1_pro"},
-    {10007, "sdm4", %{comment: "SDM4 footpod"}},
-    {10014, "edge_remote"},
-    {20119, "training_center"},
-    {20533, "tacx_training_app_win"},
-    {20534, "tacx_training_app_mac"},
-    {20565, "tacx_training_app_mac_catalyst"},
-    {30045, "tacx_training_app_android"},
-    {30046, "tacx_training_app_ios"},
-    {30047, "tacx_training_app_legacy"},
-    {65531, "connectiq_simulator"},
-    {65532, "android_antplus_plugin"},
-    {65534, "connect", %{comment: "Garmin Connect website"}}
+    {10_007, "sdm4", %{comment: "SDM4 footpod"}},
+    {10_014, "edge_remote"},
+    {20_119, "training_center"},
+    {20_533, "tacx_training_app_win"},
+    {20_534, "tacx_training_app_mac"},
+    {20_565, "tacx_training_app_mac_catalyst"},
+    {30_045, "tacx_training_app_android"},
+    {30_046, "tacx_training_app_ios"},
+    {30_047, "tacx_training_app_legacy"},
+    {65_531, "connectiq_simulator"},
+    {65_532, "android_antplus_plugin"},
+    {65_534, "connect", %{comment: "Garmin Connect website"}}
   ])
 
   type(:autolap_trigger, :enum, [
@@ -899,19 +901,19 @@ defmodule ExtFit.Profile.Types do
   ])
 
   type(:attitude_validity, :uint16, [
-    {1, "track_angle_heading_valid"},
-    {2, "pitch_valid"},
-    {4, "roll_valid"},
-    {8, "lateral_body_accel_valid"},
-    {16, "normal_body_accel_valid"},
-    {32, "turn_rate_valid"},
-    {64, "hw_fail"},
-    {128, "mag_invalid"},
-    {256, "no_gps"},
-    {512, "gps_invalid"},
-    {1024, "solution_coasting"},
-    {2048, "true_track_angle"},
-    {4096, "magnetic_heading"}
+    {0x1, "track_angle_heading_valid"},
+    {0x2, "pitch_valid"},
+    {0x4, "roll_valid"},
+    {0x8, "lateral_body_accel_valid"},
+    {0x10, "normal_body_accel_valid"},
+    {0x20, "turn_rate_valid"},
+    {0x40, "hw_fail"},
+    {0x80, "mag_invalid"},
+    {0x100, "no_gps"},
+    {0x200, "gps_invalid"},
+    {0x400, "solution_coasting"},
+    {0x800, "true_track_angle"},
+    {0x1000, "magnetic_heading"}
   ])
 
   type(:file, :enum, [
@@ -958,13 +960,13 @@ defmodule ExtFit.Profile.Types do
   ])
 
   type(:auto_activity_detect, :uint32, [
-    {0, "none"},
-    {1, "running"},
-    {2, "cycling"},
-    {4, "swimming"},
-    {8, "walking"},
-    {32, "elliptical"},
-    {1024, "sedentary"}
+    {0x0, "none"},
+    {0x1, "running"},
+    {0x2, "cycling"},
+    {0x4, "swimming"},
+    {0x8, "walking"},
+    {0x20, "elliptical"},
+    {0x400, "sedentary"}
   ])
 
   type(:goal, :enum, [
@@ -1064,38 +1066,38 @@ defmodule ExtFit.Profile.Types do
   ])
 
   type(:connectivity_capabilities, :uint32z, [
-    {1, "bluetooth"},
-    {2, "bluetooth_le"},
-    {4, "ant"},
-    {8, "activity_upload"},
-    {16, "course_download"},
-    {32, "workout_download"},
-    {64, "live_track"},
-    {128, "weather_conditions"},
-    {256, "weather_alerts"},
-    {512, "gps_ephemeris_download"},
-    {1024, "explicit_archive"},
-    {2048, "setup_incomplete"},
-    {4096, "continue_sync_after_software_update"},
-    {8192, "connect_iq_app_download"},
-    {16384, "golf_course_download"},
-    {32768, "device_initiates_sync", %{comment: "Indicates device is in control of initiating all syncs"}},
-    {65536, "connect_iq_watch_app_download"},
-    {131_072, "connect_iq_widget_download"},
-    {262_144, "connect_iq_watch_face_download"},
-    {524_288, "connect_iq_data_field_download"},
-    {1_048_576, "connect_iq_app_managment", %{comment: "Device supports delete and reorder of apps via GCM"}},
-    {2_097_152, "swing_sensor"},
-    {4_194_304, "swing_sensor_remote"},
-    {8_388_608, "incident_detection", %{comment: "Device supports incident detection"}},
-    {16_777_216, "audio_prompts"},
-    {33_554_432, "wifi_verification", %{comment: "Device supports reporting wifi verification via GCM"}},
-    {67_108_864, "true_up", %{comment: "Device supports True Up"}},
-    {134_217_728, "find_my_watch", %{comment: "Device supports Find My Watch"}},
-    {268_435_456, "remote_manual_sync"},
-    {536_870_912, "live_track_auto_start", %{comment: "Device supports LiveTrack auto start"}},
-    {1_073_741_824, "live_track_messaging", %{comment: "Device supports LiveTrack Messaging"}},
-    {2_147_483_648, "instant_input", %{comment: "Device supports instant input feature"}}
+    {0x1, "bluetooth"},
+    {0x2, "bluetooth_le"},
+    {0x4, "ant"},
+    {0x8, "activity_upload"},
+    {0x10, "course_download"},
+    {0x20, "workout_download"},
+    {0x40, "live_track"},
+    {0x80, "weather_conditions"},
+    {0x100, "weather_alerts"},
+    {0x200, "gps_ephemeris_download"},
+    {0x400, "explicit_archive"},
+    {0x800, "setup_incomplete"},
+    {0x1000, "continue_sync_after_software_update"},
+    {0x2000, "connect_iq_app_download"},
+    {0x4000, "golf_course_download"},
+    {0x8000, "device_initiates_sync", %{comment: "Indicates device is in control of initiating all syncs"}},
+    {0x10000, "connect_iq_watch_app_download"},
+    {0x20000, "connect_iq_widget_download"},
+    {0x40000, "connect_iq_watch_face_download"},
+    {0x80000, "connect_iq_data_field_download"},
+    {0x100000, "connect_iq_app_managment", %{comment: "Device supports delete and reorder of apps via GCM"}},
+    {0x200000, "swing_sensor"},
+    {0x400000, "swing_sensor_remote"},
+    {0x800000, "incident_detection", %{comment: "Device supports incident detection"}},
+    {0x1000000, "audio_prompts"},
+    {0x2000000, "wifi_verification", %{comment: "Device supports reporting wifi verification via GCM"}},
+    {0x4000000, "true_up", %{comment: "Device supports True Up"}},
+    {0x8000000, "find_my_watch", %{comment: "Device supports Find My Watch"}},
+    {0x10000000, "remote_manual_sync"},
+    {0x20000000, "live_track_auto_start", %{comment: "Device supports LiveTrack auto start"}},
+    {0x40000000, "live_track_messaging", %{comment: "Device supports LiveTrack Messaging"}},
+    {0x80000000, "instant_input", %{comment: "Device supports instant input feature"}}
   ])
 
   type(:file_flags, :uint8z, [{2, "read"}, {4, "write"}, {8, "erase"}])
@@ -1814,7 +1816,7 @@ defmodule ExtFit.Profile.Types do
     {16, "stationary_min"},
     {255, "stationary_max"},
     {256, "portable_min"},
-    {65534, "portable_max"}
+    {65_534, "portable_max"}
   ])
 
   type(:course_point, :enum, [
@@ -2415,8 +2417,8 @@ defmodule ExtFit.Profile.Types do
 
   type(:message_index, :uint16, [
     {4095, "mask", %{comment: "index"}},
-    {28672, "reserved", %{comment: "reserved (default 0)"}},
-    {32768, "selected", %{comment: "message is selected if set"}}
+    {28_672, "reserved", %{comment: "reserved (default 0)"}},
+    {32_768, "selected", %{comment: "message is selected if set"}}
   ])
 
   type(:language, :enum, [
@@ -2526,8 +2528,8 @@ defmodule ExtFit.Profile.Types do
   ])
 
   type(:left_right_balance_100, :uint16, [
-    {16383, "mask", %{comment: "% contribution scaled by 100"}},
-    {32768, "right", %{comment: "data corresponds to right if set, otherwise unknown"}}
+    {16_383, "mask", %{comment: "% contribution scaled by 100"}},
+    {32_768, "right", %{comment: "data corresponds to right if set, otherwise unknown"}}
   ])
 
   type(:schedule, :enum, [{0, "workout"}, {1, "course"}])
@@ -3626,7 +3628,7 @@ defmodule ExtFit.Profile.Types do
     {30, "triceps_extension"},
     {31, "warm_up"},
     {32, "run"},
-    {65534, "unknown"}
+    {65_534, "unknown"}
   ])
 
   type(:intensity, :enum, [
@@ -3642,14 +3644,14 @@ defmodule ExtFit.Profile.Types do
   type(:dive_gas_status, :enum, [{0, "disabled"}, {1, "enabled"}, {2, "backup_only"}])
 
   type(:supported_exd_screen_layouts, :uint32z, [
-    {1, "full_screen"},
-    {2, "half_vertical"},
-    {4, "half_horizontal"},
-    {8, "half_vertical_right_split"},
-    {16, "half_horizontal_bottom_split"},
-    {32, "full_quarter_split"},
-    {64, "half_vertical_left_split"},
-    {128, "half_horizontal_top_split"}
+    {0x1, "full_screen"},
+    {0x2, "half_vertical"},
+    {0x4, "half_horizontal"},
+    {0x8, "half_vertical_right_split"},
+    {0x10, "half_horizontal_bottom_split"},
+    {0x20, "full_quarter_split"},
+    {0x40, "half_vertical_left_split"},
+    {0x80, "half_horizontal_top_split"}
   ])
 
   type(:time_mode, :enum, [
@@ -3684,7 +3686,7 @@ defmodule ExtFit.Profile.Types do
     {6, "key_and_messages_and_smart_notifications"}
   ])
 
-  type(:weight, :uint16, [{65534, "calculating"}])
+  type(:weight, :uint16, [{65_534, "calculating"}])
 
   type(:sport_bits_5, :uint8z, [
     {1, "water_skiing"},
@@ -3753,20 +3755,20 @@ defmodule ExtFit.Profile.Types do
   type(:analog_watchface_layout, :enum, [{0, "minimal"}, {1, "traditional"}, {2, "modern"}])
 
   type(:workout_capabilities, :uint32z, [
-    {1, "interval"},
-    {2, "custom"},
-    {4, "fitness_equipment"},
-    {8, "firstbeat"},
-    {16, "new_leaf"},
-    {32, "tcx", %{comment: "For backwards compatibility. Watch should add missing id fields then clear flag."}},
-    {128, "speed", %{comment: "Speed source required for workout step."}},
-    {256, "heart_rate", %{comment: "Heart rate source required for workout step."}},
-    {512, "distance", %{comment: "Distance source required for workout step."}},
-    {1024, "cadence", %{comment: "Cadence source required for workout step."}},
-    {2048, "power", %{comment: "Power source required for workout step."}},
-    {4096, "grade", %{comment: "Grade source required for workout step."}},
-    {8192, "resistance", %{comment: "Resistance source required for workout step."}},
-    {16384, "protected"}
+    {0x1, "interval"},
+    {0x2, "custom"},
+    {0x4, "fitness_equipment"},
+    {0x8, "firstbeat"},
+    {0x10, "new_leaf"},
+    {0x20, "tcx", %{comment: "For backwards compatibility. Watch should add missing id fields then clear flag."}},
+    {0x80, "speed", %{comment: "Speed source required for workout step."}},
+    {0x100, "heart_rate", %{comment: "Heart rate source required for workout step."}},
+    {0x200, "distance", %{comment: "Distance source required for workout step."}},
+    {0x400, "cadence", %{comment: "Cadence source required for workout step."}},
+    {0x800, "power", %{comment: "Power source required for workout step."}},
+    {0x1000, "grade", %{comment: "Grade source required for workout step."}},
+    {0x2000, "resistance", %{comment: "Resistance source required for workout step."}},
+    {0x4000, "protected"}
   ])
 
   type(:olympic_lift_exercise_name, :uint16, [
