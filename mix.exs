@@ -50,7 +50,9 @@ defmodule ExtFit.MixProject do
       {:excoveralls, "~> 0.18.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
       {:dialyxir, "~> 1.3", only: [:dev], runtime: false},
-      {:csv, "~> 3.2", only: [:test]}
+      {:csv, "~> 3.2", only: [:test]},
+      {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
+      {:styler, "~> 0.11", only: [:dev, :test], runtime: false}
     ]
   end
 
