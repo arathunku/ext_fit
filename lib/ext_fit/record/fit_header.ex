@@ -1,4 +1,5 @@
 defmodule ExtFit.Record.FitHeader do
+  @moduledoc false
   @derive {Inspect, except: ~w(__chunk__)a}
   defstruct header_size: 0,
             type_frame: nil,

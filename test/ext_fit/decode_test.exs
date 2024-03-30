@@ -1,12 +1,20 @@
 defmodule ExtFit.DecodeTest do
   use ExUnit.Case, async: true
-  doctest ExtFit.Decode
+
+  alias ExtFit.Chunk
+  alias ExtFit.Decode
+  alias ExtFit.Field
+  alias ExtFit.Record
+  alias ExtFit.Record.FitCrc
+  alias ExtFit.Record.FitData
+  alias ExtFit.Record.FitDefinition
+  alias ExtFit.Record.FitHeader
 
   require Logger
-  alias ExtFit.{Decode, Field, Record, Chunk}
-  alias ExtFit.Record.{FitHeader, FitCrc, FitDefinition, FitData}
 
-  @files Path.join(__DIR__, "../support/files") |> Path.expand()
+  doctest ExtFit.Decode
+
+  @files __DIR__ |> Path.join("../support/files") |> Path.expand()
 
   test "reads Activity.fit file" do
     filename = "Activity.fit"
@@ -23,7 +31,7 @@ defmodule ExtFit.DecodeTest do
              type_frame: ".FIT"
            }
 
-    assert List.last(records) == %FitCrc{crc: 41429, __chunk__: %Chunk{index: 33, offset: 769, size: 2}}
+    assert List.last(records) == %FitCrc{crc: 41_429, __chunk__: %Chunk{index: 33, offset: 769, size: 2}}
   end
 
   test "reads Settings.fit file" do
@@ -53,7 +61,7 @@ defmodule ExtFit.DecodeTest do
 
     assert header == %FitHeader{
              body_size: 162,
-             crc: %FitCrc{crc: 53438, matched: nil},
+             crc: %FitCrc{crc: 53_438, matched: nil},
              header_size: 14,
              profile_ver: 1640,
              proto_ver: 32,
@@ -72,7 +80,7 @@ defmodule ExtFit.DecodeTest do
 
     assert header == %FitHeader{
              body_size: 715_710,
-             crc: %FitCrc{crc: 23070, matched: nil},
+             crc: %FitCrc{crc: 23_070, matched: nil},
              header_size: 14,
              profile_ver: 2027,
              proto_ver: 32,
@@ -81,7 +89,7 @@ defmodule ExtFit.DecodeTest do
            }
 
     session = Enum.find(data_records, &(Record.name(&1) == :session && &1.__struct__ == FitData))
-    avg_speed = session.fields |> Enum.find(&(Field.name(&1) == :avg_speed))
+    avg_speed = Enum.find(session.fields, &(Field.name(&1) == :avg_speed))
     assert avg_speed.value == 5.86
   end
 
@@ -106,9 +114,10 @@ defmodule ExtFit.DecodeTest do
     compressed_speed_distance = data_records |> Enum.drop(26) |> Enum.take(3)
 
     values =
-      Enum.map(compressed_speed_distance, fn
+      compressed_speed_distance
+      |> Enum.map(fn
         %FitData{} = record ->
-          record.fields |> Enum.filter(&(Field.name(&1) in ~w(speed distance cadence)a))
+          Enum.filter(record.fields, &(Field.name(&1) in ~w(speed distance cadence)a))
 
         _ ->
           nil
@@ -130,9 +139,9 @@ defmodule ExtFit.DecodeTest do
     assert length(records) == 6250
 
     assert hd(records) == %FitHeader{
-             body_size: 58949,
+             body_size: 58_949,
              __chunk__: %ExtFit.Chunk{index: 0, offset: 0, size: 14},
-             crc: %ExtFit.Record.FitCrc{crc: 46851, matched: nil},
+             crc: %ExtFit.Record.FitCrc{crc: 46_851, matched: nil},
              header_size: 14,
              profile_ver: 2032,
              proto_ver: 16,
@@ -140,7 +149,8 @@ defmodule ExtFit.DecodeTest do
            }
 
     field_data_values =
-      Enum.at(records, -254)
+      records
+      |> Enum.at(-254)
       |> Map.fetch!(:fields)
       |> Enum.map(&{Field.name(&1), &1.value})
       |> Enum.filter(&(elem(&1, 0) == :event_timestamp))
@@ -165,7 +175,7 @@ defmodule ExtFit.DecodeTest do
       |> read_file()
       |> Decode.decode!()
 
-    assert length(records) == 11327
+    assert length(records) == 11_327
   end
 
   test "reads developer types - developer-types-sample.fit" do
@@ -207,7 +217,7 @@ defmodule ExtFit.DecodeTest do
       |> read_file()
       |> Decode.decode!()
 
-    assert length(records) == 16478
+    assert length(records) == 16_478
 
     %FitData{fields: fields} = Enum.at(records, 606)
 
@@ -217,7 +227,7 @@ defmodule ExtFit.DecodeTest do
       |> Enum.sort_by(&elem(&1, 0))
 
     assert result == [
-             {:accumulated_power, 57288},
+             {:accumulated_power, 57_288},
              {:activity_type, 1},
              {:cadence, 92},
              {:cycle_length16, 0.0},
@@ -253,7 +263,7 @@ defmodule ExtFit.DecodeTest do
       |> read_file()
       |> Decode.decode!()
 
-    inital_chunks = Enum.take(records, 10) |> Enum.map(& &1.__chunk__)
+    inital_chunks = records |> Enum.take(10) |> Enum.map(& &1.__chunk__)
     %FitCrc{__chunk__: last_chunk} = List.last(records)
 
     assert inital_chunks == [
@@ -269,7 +279,7 @@ defmodule ExtFit.DecodeTest do
              %Chunk{index: 9, offset: 186, size: 21}
            ]
 
-    assert last_chunk == %Chunk{index: 16477, offset: 409_415, size: 2}
+    assert last_chunk == %Chunk{index: 16_477, offset: 409_415, size: 2}
   end
 
   describe "options" do
@@ -279,13 +289,15 @@ defmodule ExtFit.DecodeTest do
       {:ok, records} = Decode.decode(file, expand_components: false)
 
       event_timestamp_values =
-        Enum.at(records, -254)
+        records
+        |> Enum.at(-254)
         |> Map.fetch!(:fields)
         |> Enum.map(&{Field.name(&1), &1.value})
         |> Enum.filter(&(elem(&1, 0) == :event_timestamp))
 
       event_timestamp_12_values =
-        Enum.at(records, -254)
+        records
+        |> Enum.at(-254)
         |> Map.fetch!(:fields)
         |> Enum.map(&{Field.name(&1), &1.value})
         |> Enum.filter(&(elem(&1, 0) == :event_timestamp_12))
@@ -308,13 +320,11 @@ defmodule ExtFit.DecodeTest do
   end
 
   defp field_data_values(records) when is_list(records) do
-    records
-    |> Enum.map(&field_data_values/1)
+    Enum.map(records, &field_data_values/1)
   end
 
   defp field_data_values(%{fields: fields}) do
-    fields
-    |> Enum.map(&{Field.name(&1), &1.value})
+    Enum.map(fields, &{Field.name(&1), &1.value})
   end
 
   defp field_data_values(%{field_defs: defs, dev_field_defs: dev_field_defs}),

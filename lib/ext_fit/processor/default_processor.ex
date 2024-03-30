@@ -10,9 +10,12 @@ defmodule ExtFit.Processor.DefaultProcessor do
   """
 
   @behaviour ExtFit.Processor
+
   alias ExtFit.Field
-  alias ExtFit.Types.{FieldType, BaseType, FieldData}
-  alias ExtFit.Record.{FitData}
+  alias ExtFit.Record.FitData
+  alias ExtFit.Types.BaseType
+  alias ExtFit.Types.FieldData
+  alias ExtFit.Types.FieldType
 
   # Datetimes (uint32) represent seconds since this ``FIT_UTC_REFERENCE``
   # (unix timestamp for UTC 00:00 Dec 31 1989).
@@ -23,7 +26,7 @@ defmodule ExtFit.Processor.DefaultProcessor do
   # @fit_datetime_min 0x10000000
 
   def process_record(%FitData{fields: fields, def_mesg: %{mesg_type: %{name: :hr}}} = fdm) do
-    with true <- !!Enum.find(fields, &(Field.name(&1) == :event_timestamp_12)) do
+    if Enum.find(fields, &(Field.name(&1) == :event_timestamp_12)) do
       fields =
         Enum.map(fields, fn
           %{field: %{name: :event_timestamp}, value: value} = field when is_number(value) ->
@@ -34,7 +37,9 @@ defmodule ExtFit.Processor.DefaultProcessor do
               |> Cldr.Digits.fraction_as_integer()
 
             value =
-              DateTime.from_unix!(trunc(@fit_utc_reference_s + value))
+              (@fit_utc_reference_s + value)
+              |> trunc()
+              |> DateTime.from_unix!()
               |> Map.put(:microsecond, {fraction, 6})
 
             %{field | units: nil, value: value}
@@ -45,7 +50,7 @@ defmodule ExtFit.Processor.DefaultProcessor do
 
       %{fdm | fields: fields}
     else
-      _ -> fdm
+      fdm
     end
   end
 
@@ -76,7 +81,8 @@ defmodule ExtFit.Processor.DefaultProcessor do
   end
 
   defp process_field_value(value, %{type: %FieldType{name: :local_date_time}}) do
-    DateTime.from_unix!(@fit_utc_reference_s + (value || 0))
+    (@fit_utc_reference_s + (value || 0))
+    |> DateTime.from_unix!()
     |> DateTime.to_naive()
   end
 

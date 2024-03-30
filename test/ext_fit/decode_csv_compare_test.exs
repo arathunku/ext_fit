@@ -1,10 +1,16 @@
 defmodule ExtFit.DecodeCsvCompareTest do
   use ExUnit.Case, async: true
-  require Logger
-  alias ExtFit.{Decode, Field, Record, Processor}
-  alias ExtFit.Record.{FitHeader, FitCrc}
 
-  @files Path.join(__DIR__, "../support/files") |> Path.expand()
+  alias ExtFit.Decode
+  alias ExtFit.Field
+  alias ExtFit.Processor
+  alias ExtFit.Record
+  alias ExtFit.Record.FitCrc
+  alias ExtFit.Record.FitHeader
+
+  require Logger
+
+  @files __DIR__ |> Path.join("../support/files") |> Path.expand()
 
   @test_focus_file System.get_env("EXT_FIT_FOCUS_FILE")
 
@@ -72,28 +78,30 @@ defmodule ExtFit.DecodeCsvCompareTest do
       skipped_records = length(records) - length(record_to_compare)
 
       # Firt row is headers
-      fit2csv = get_fit2csv_data(filename) |> Enum.drop(1)
+      fit2csv = filename |> get_fit2csv_data() |> Enum.drop(1)
 
       fit2csv_count = length(fit2csv)
       cmp_rows = Enum.min([fit2csv_count, 300])
 
       assert length(records) - skipped_records == length(fit2csv)
 
-      ext_fit_records = record_to_compare |> Enum.take(cmp_rows)
+      ext_fit_records = Enum.take(record_to_compare, cmp_rows)
       fit2csv_records = Enum.take(fit2csv, cmp_rows)
 
-      Enum.zip(ext_fit_records, fit2csv_records)
+      ext_fit_records
+      |> Enum.zip(fit2csv_records)
       |> Enum.with_index()
       |> Enum.map(fn {{record, row}, idx} ->
         record_values =
-          field_data_values(record)
+          record
+          |> field_data_values()
           |> Enum.map(fn {name, value} -> {normalize_name(name), normalize_value(value)} end)
           |> Enum.filter(fn {name, _} -> name not in @dropped_fields end)
           |> Enum.reduce([], fn {name, value}, acc ->
             if Enum.find(acc, &(elem(&1, 0) == name)) do
               Enum.map(acc, fn
                 {^name, found_value} ->
-                  {name, List.flatten([found_value, value]) |> normalize_value()}
+                  {name, [found_value, value] |> List.flatten() |> normalize_value()}
 
                 elem ->
                   elem
@@ -114,7 +122,8 @@ defmodule ExtFit.DecodeCsvCompareTest do
             name = normalize_name(name)
 
             known_record_value =
-              Enum.find(record_values, &(elem(&1, 0) == name))
+              record_values
+              |> Enum.find(&(elem(&1, 0) == name))
               |> case do
                 {^name, value} -> value
                 _ -> :unknown
@@ -123,7 +132,8 @@ defmodule ExtFit.DecodeCsvCompareTest do
             # additonal mapping, sometime CSV has additional values at the end of array
             # null bytes / invalid values to mark "the end", we don't care about that when reading
             value =
-              normalize_fit2csv_value(filename, name, value)
+              filename
+              |> normalize_fit2csv_value(name, value)
               |> case do
                 [^known_record_value | _] -> known_record_value
                 value -> value
@@ -152,13 +162,11 @@ defmodule ExtFit.DecodeCsvCompareTest do
   end
 
   defp field_data_values(records) when is_list(records) do
-    records
-    |> Enum.map(&field_data_values/1)
+    Enum.map(records, &field_data_values/1)
   end
 
   defp field_data_values(%{fields: fields}) do
-    fields
-    |> Enum.map(&{Field.name(&1), &1.value})
+    Enum.map(fields, &{Field.name(&1), &1.value})
   end
 
   defp field_data_values(%{field_defs: defs, dev_field_defs: dev_field_defs}),
@@ -169,7 +177,8 @@ defmodule ExtFit.DecodeCsvCompareTest do
   defp get_fit2csv_data(filename) do
     filename = String.replace_suffix(filename, ".fit", ".csv")
 
-    Path.join(@files, filename)
+    @files
+    |> Path.join(filename)
     |> File.stream!()
     |> CSV.decode!()
     |> Enum.to_list()
@@ -199,32 +208,33 @@ defmodule ExtFit.DecodeCsvCompareTest do
   def normalize_value(%DateTime{} = dt),
     do: dt |> DateTime.truncate(:second) |> DateTime.to_iso8601() |> normalize_value()
 
-  def normalize_value(%NaiveDateTime{} = ndt),
-    do: ndt |> DateTime.from_naive!("Etc/UTC") |> normalize_value()
+  def normalize_value(%NaiveDateTime{} = ndt), do: ndt |> DateTime.from_naive!("Etc/UTC") |> normalize_value()
 
   def normalize_value(nil), do: ""
 
   def normalize_value(v) when is_bitstring(v) do
-    v = v |> String.downcase()
+    v = String.downcase(v)
 
-    try do
-      v
-      |> String.to_float()
-      |> Decimal.from_float()
-      |> Decimal.round(2)
-      |> Decimal.to_string()
-    rescue
-      ArgumentError ->
-        try do
-          v
-          |> String.to_integer()
-          |> Decimal.round(2)
-          |> Decimal.to_string()
-        rescue
-          ArgumentError -> v
-        end
-    end
-    |> case do
+    try_result =
+      try do
+        v
+        |> String.to_float()
+        |> Decimal.from_float()
+        |> Decimal.round(2)
+        |> Decimal.to_string()
+      rescue
+        ArgumentError ->
+          try do
+            v
+            |> String.to_integer()
+            |> Decimal.round(2)
+            |> Decimal.to_string()
+          rescue
+            ArgumentError -> v
+          end
+      end
+
+    case try_result do
       "0.00" -> ""
       "0" -> "0"
       "65535.00" -> ""

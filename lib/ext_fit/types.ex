@@ -1,4 +1,5 @@
 defmodule ExtFit.Types.BaseType do
+  @moduledoc false
   defstruct name: nil, id: nil, size: nil, invalid: nil
 
   @type t() :: %__MODULE__{
@@ -21,6 +22,7 @@ defmodule ExtFit.Types.BaseType do
 end
 
 defmodule ExtFit.Types.FieldType do
+  @moduledoc false
   @derive {Inspect, except: ~w(values)a}
   defstruct name: nil, base_type: nil, values: %{}
 
@@ -33,6 +35,7 @@ defmodule ExtFit.Types.FieldType do
 end
 
 defmodule ExtFit.Types.FieldTypeValue do
+  @moduledoc false
   defstruct num: nil, name: nil
 
   @type t() :: %__MODULE__{
@@ -42,6 +45,7 @@ defmodule ExtFit.Types.FieldTypeValue do
 end
 
 defmodule ExtFit.Types.Field do
+  @moduledoc false
   @derive {Inspect, optional: ~w(scale offset units components array subfields)a}
   defstruct name: nil,
             type: nil,
@@ -67,6 +71,7 @@ defmodule ExtFit.Types.Field do
 end
 
 defmodule ExtFit.Types.Subfield do
+  @moduledoc false
   @derive {Inspect, optional: ~w(scale offset units components ref_fields)a}
   defstruct name: nil,
             type: nil,
@@ -90,6 +95,7 @@ defmodule ExtFit.Types.Subfield do
 end
 
 defmodule ExtFit.Types.DevField do
+  @moduledoc false
   defstruct dev_data_index: nil, name: nil, type: nil, num: nil, units: nil, native_field_num: nil
 
   @type t() :: %__MODULE__{
@@ -103,6 +109,7 @@ defmodule ExtFit.Types.DevField do
 end
 
 defmodule ExtFit.Types.ReferenceField do
+  @moduledoc false
   defstruct name: nil, value: nil, raw_value: nil, num: nil
 
   @type t() :: %__MODULE__{
@@ -114,6 +121,7 @@ defmodule ExtFit.Types.ReferenceField do
 end
 
 defmodule ExtFit.Types.ComponentField do
+  @moduledoc false
   @derive {Inspect, optional: ~w(scale offset units is_accumulated)a}
   defstruct name: nil,
             num: nil,
@@ -137,6 +145,7 @@ defmodule ExtFit.Types.ComponentField do
 end
 
 defmodule ExtFit.Types.MessageType do
+  @moduledoc false
   defstruct name: nil, num: nil, fields: []
 
   @type t() :: %__MODULE__{
@@ -147,6 +156,7 @@ defmodule ExtFit.Types.MessageType do
 end
 
 defmodule ExtFit.Types.FieldDefinition do
+  @moduledoc false
   defstruct field: nil, num: nil, base_type: nil, size: nil
 
   @type t() :: %__MODULE__{
@@ -157,6 +167,7 @@ defmodule ExtFit.Types.FieldDefinition do
 end
 
 defmodule ExtFit.Types.DevFieldDefinition do
+  @moduledoc false
   defstruct field: nil, dev_data_index: nil, num: nil, size: nil, base_type: nil
 
   @type t() :: %__MODULE__{
@@ -169,6 +180,7 @@ defmodule ExtFit.Types.DevFieldDefinition do
 end
 
 defmodule ExtFit.Types.FieldData do
+  @moduledoc false
   alias ExtFit.Field
 
   defstruct field_def: nil,
@@ -203,8 +215,9 @@ defmodule ExtFit.Types.FieldData do
 end
 
 defmodule ExtFit.Types do
-  alias ExtFit.Types.BaseType
+  @moduledoc false
   alias ExtFit.Profile
+  alias ExtFit.Types.BaseType
 
   @base_type_byte %BaseType{
     name: :byte,
@@ -288,7 +301,7 @@ defmodule ExtFit.Types do
     }
   }
 
-  @base_type_by_name @base_types |> Enum.map(fn {_, type} -> {type.name, type} end) |> Enum.into(%{})
+  @base_type_by_name Map.new(@base_types, fn {_, type} -> {type.name, type} end)
 
   # Orders matters here!!!
   @base_type_num [

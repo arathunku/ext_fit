@@ -3,8 +3,9 @@ defmodule ExtFit.Processor do
   Defines behaviour for processing records and field data.
   """
 
-  alias ExtFit.Types.{FieldData}
-  alias ExtFit.Record.{FitData, FitDefinition}
+  alias ExtFit.Record.FitData
+  alias ExtFit.Record.FitDefinition
+  alias ExtFit.Types.FieldData
 
   @doc """
   Called for each record.
