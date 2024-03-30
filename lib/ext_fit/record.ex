@@ -1,6 +1,11 @@
 defmodule ExtFit.Record do
-  alias ExtFit.{Field, Types}
-  alias __MODULE__.{FitHeader, FitCrc, FitData, FitDefinition}
+  @moduledoc false
+  alias __MODULE__.FitCrc
+  alias __MODULE__.FitData
+  alias __MODULE__.FitDefinition
+  alias __MODULE__.FitHeader
+  alias ExtFit.Field
+  alias ExtFit.Types
 
   @type t :: %FitHeader{} | %FitCrc{} | %FitData{} | %FitDefinition{}
 
@@ -65,7 +70,7 @@ defmodule ExtFit.Record do
 
   def debug(%FitDefinition{} = record) do
     {:definition, Map.get(record.mesg_type || %{}, :name), record.local_mesg_num, record.global_mesg_num,
-     Enum.map(record.field_defs, &Field.name/1) |> Enum.join(",")}
+     Enum.map_join(record.field_defs, ",", &Field.name/1)}
   end
 
   def debug(%FitData{} = record) do

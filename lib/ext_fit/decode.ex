@@ -6,11 +6,21 @@ defmodule ExtFit.Decode do
   See `decode/2` for details.
   """
 
-  require Logger
   import Bitwise
-  alias ExtFit.{Types, Profile, Processor, Record, Field, Chunk}
-  alias ExtFit.Record.{FitHeader, FitCrc, FitDefinition, FitData}
+
+  alias ExtFit.Chunk
+  alias ExtFit.Field
+  alias ExtFit.Processor
+  alias ExtFit.Profile
+  alias ExtFit.Record
+  alias ExtFit.Record.FitCrc
+  alias ExtFit.Record.FitData
+  alias ExtFit.Record.FitDefinition
+  alias ExtFit.Record.FitHeader
+  alias ExtFit.Types
   alias Types.FieldData
+
+  require Logger
 
   @default_opts %{
     expand_components: true,
@@ -117,7 +127,7 @@ defmodule ExtFit.Decode do
   defp build_options(default_opts, opts \\ []) do
     # TODO: validate options
     # TODO: add more options(skip crc, skip chunks metadata, etc.), see README.md
-    Map.merge(default_opts, Enum.into(opts, %{}))
+    Map.merge(default_opts, Map.new(opts))
   end
 
   # > 12 byte header is considered legacy, using the 14 byte header is preferred
@@ -141,7 +151,7 @@ defmodule ExtFit.Decode do
       __chunk__: chunk
     }
 
-    if header_size not in [12, 14] do
+    unless header_size in [12, 14] do
       Logger.warning("Header is not valid size, still trying to decode: #{inspect(header)}")
     end
 
@@ -185,7 +195,8 @@ defmodule ExtFit.Decode do
         {body, rest}
       end
 
-    read_data_records(body, [], state)
+    body
+    |> read_data_records([], state)
     |> case do
       {:ok, v, state} -> {:ok, v, rest, state}
       {:error, _err_msg, _records, _rest} = err -> err
@@ -197,48 +208,50 @@ defmodule ExtFit.Decode do
   end
 
   defp read_data_records(<<header::binary-size(1), rest::binary>>, records, state) do
-    case header do
-      # definition message
-      <<0::1, 1::1, dev_data_flag::1, 0::1, local_mesg_num::integer-little-size(4)-unit(1)>> ->
-        record_header = %{is_developer_data: dev_data_flag == 1, local_mesg_num: local_mesg_num}
+    case_result =
+      case header do
+        # definition message
+        <<0::1, 1::1, dev_data_flag::1, 0::1, local_mesg_num::integer-little-size(4)-unit(1)>> ->
+          record_header = %{is_developer_data: dev_data_flag == 1, local_mesg_num: local_mesg_num}
 
-        case read_def_mesg(rest, record_header, state) do
-          {:ok, _def_mesg, _rest, _state} = result -> result
-          {:error, reason} -> {:error, reason, records, rest}
-        end
+          case read_def_mesg(rest, record_header, state) do
+            {:ok, _def_mesg, _rest, _state} = result -> result
+            {:error, reason} -> {:error, reason, records, rest}
+          end
 
-      # data message
-      <<0::1, 0::1, dev_data_flag::1, 0::1, local_mesg_num::integer-little-size(4)-unit(1)>> ->
-        record_header = %{is_developer_data: dev_data_flag == 1, local_mesg_num: local_mesg_num}
+        # data message
+        <<0::1, 0::1, dev_data_flag::1, 0::1, local_mesg_num::integer-little-size(4)-unit(1)>> ->
+          record_header = %{is_developer_data: dev_data_flag == 1, local_mesg_num: local_mesg_num}
 
-        case Map.fetch(state.local_num_mapping, local_mesg_num) do
-          {:ok, def_mesg} ->
-            read_data_mesg(rest, record_header, def_mesg, state)
+          case Map.fetch(state.local_num_mapping, local_mesg_num) do
+            {:ok, def_mesg} ->
+              read_data_mesg(rest, record_header, def_mesg, state)
 
-          _ ->
-            {:error, "Missing mesg num: #{local_mesg_num}", records, rest}
-        end
+            _ ->
+              {:error, "Missing mesg num: #{local_mesg_num}", records, rest}
+          end
 
-      # compressed header
-      <<1::1, local_mesg_num::2, time_offset::unit(1)-size(5)-integer>> ->
-        record_header = %{
-          is_developer_data: false,
-          local_mesg_num: local_mesg_num,
-          time_offset: time_offset
-        }
+        # compressed header
+        <<1::1, local_mesg_num::2, time_offset::unit(1)-size(5)-integer>> ->
+          record_header = %{
+            is_developer_data: false,
+            local_mesg_num: local_mesg_num,
+            time_offset: time_offset
+          }
 
-        case Map.fetch(state.local_num_mapping, local_mesg_num) do
-          {:ok, def_mesg} ->
-            read_data_mesg(rest, record_header, def_mesg, state)
+          case Map.fetch(state.local_num_mapping, local_mesg_num) do
+            {:ok, def_mesg} ->
+              read_data_mesg(rest, record_header, def_mesg, state)
 
-          _ ->
-            {:error, "Missing mesg num: #{local_mesg_num}", records, rest}
-        end
+            _ ->
+              {:error, "Missing mesg num: #{local_mesg_num}", records, rest}
+          end
 
-      _ ->
-        {:ok, rest, state}
-    end
-    |> case do
+        _ ->
+          {:ok, rest, state}
+      end
+
+    case case_result do
       {:ok, rest, state} ->
         read_data_records(rest, records, state)
 
@@ -324,7 +337,8 @@ defmodule ExtFit.Decode do
           <<num, size, dev_data_index, rest::binary>> = rest
 
           field =
-            Map.get(state.dev_field_defs, dev_data_index)
+            state.dev_field_defs
+            |> Map.get(dev_data_index)
             |> Map.fetch!(:fields)
             |> Map.fetch!(num)
 
@@ -356,7 +370,8 @@ defmodule ExtFit.Decode do
     }
 
     state =
-      put_in(state, [:local_num_mapping, header.local_mesg_num], def_mesg)
+      state
+      |> put_in([:local_num_mapping, header.local_mesg_num], def_mesg)
       |> Map.put(:chunk, next_chunk)
 
     {:ok, def_mesg, rest, state}
@@ -392,9 +407,10 @@ defmodule ExtFit.Decode do
           }
       end
 
+    all_field_defs = def_mesg.field_defs ++ def_mesg.dev_field_defs
+
     {fields, rest, state} =
-      (def_mesg.field_defs ++ def_mesg.dev_field_defs)
-      |> Enum.reduce({[], data, state}, fn field_def, {fields, rest, state} ->
+      Enum.reduce(all_field_defs, {[], data, state}, fn field_def, {fields, rest, state} ->
         size = field_def.size
         <<bin::binary-size(size), rest::binary>> = rest
         raw_value = if(field_def.field, do: read_value(bin, def_mesg.endian, field_def))
@@ -410,14 +426,9 @@ defmodule ExtFit.Decode do
 
         cmp_bin =
           cond do
-            raw_value == :invalid || raw_value == [] ->
-              <<>>
-
-            def_mesg.endian == :big ->
-              bin |> :binary.decode_unsigned(:big) |> :binary.encode_unsigned(:little)
-
-            true ->
-              bin
+            raw_value == :invalid || raw_value == [] -> <<>>
+            def_mesg.endian == :big -> bin |> :binary.decode_unsigned(:big) |> :binary.encode_unsigned(:little)
+            true -> bin
           end
 
         {fields_with_components, state} =
@@ -431,7 +442,8 @@ defmodule ExtFit.Decode do
       end)
 
     {fields, rest, state} =
-      Enum.reverse(fields)
+      fields
+      |> Enum.reverse()
       |> Enum.reduce({[], rest, state}, fn %FieldData{} = fd, {fields_data, rest, state} ->
         {field_data, state} = resolve_field_data(fd, def_mesg, state, fields)
 
@@ -445,14 +457,15 @@ defmodule ExtFit.Decode do
      %FitData{
        is_developer_data: header.is_developer_data,
        local_mesg_num: header.local_mesg_num,
-       fields: all_fields |> Enum.map(&process_field_data(&1, state)),
+       fields: Enum.map(all_fields, &process_field_data(&1, state)),
        def_mesg: def_mesg,
        __chunk__: chunk
      }, rest, %{state | chunk: next_chunk}}
   end
 
   defp unroll_components_into_fields(field, bin, def_mesg, state, fields, parent_cmp \\ nil) do
-    get_components(field)
+    field
+    |> get_components()
     |> Enum.reduce({fields, state}, fn %Types.ComponentField{} = cmp, {fields, state} ->
       cmp_raw_value = extract_component(bin, cmp.bits, cmp.bit_offset)
       {_, cmp_field} = Enum.find(def_mesg.mesg_type.fields, &(elem(&1, 1).num == cmp.num))
@@ -506,8 +519,7 @@ defmodule ExtFit.Decode do
             value
 
           !!raw_value ->
-            raw_value
-            |> apply_scale_offset(field)
+            apply_scale_offset(raw_value, field)
 
           true ->
             nil
@@ -581,7 +593,8 @@ defmodule ExtFit.Decode do
       else
         <<v::binary-unit(8)-size(size), rest::binary>> = bin
 
-        read_single_value(v, invalid, endian, name, size)
+        v
+        |> read_single_value(invalid, endian, name, size)
         |> case do
           :invalid ->
             {values, rest}
@@ -598,7 +611,7 @@ defmodule ExtFit.Decode do
   end
 
   defp read_single_value(v, invalid, endian, name, size) do
-    try do
+    case_result =
       case {endian, name} do
         {_, name} when name in ~w(enum sint8 uint8 uint8z byte uint16 uint32 uint64 uint16z uint32z uint64z)a ->
           #   <<v::integer>> = v
@@ -622,14 +635,14 @@ defmodule ExtFit.Decode do
           <<v::unit(8)-size(size)-little-float>> = v
           v
       end
-      |> case do
-        ^invalid -> :invalid
-        value -> value
-      end
-    rescue
-      _err in MatchError ->
-        :invalid
+
+    case case_result do
+      ^invalid -> :invalid
+      value -> value
     end
+  rescue
+    _err in MatchError ->
+      :invalid
   end
 
   defp resolve_subfield(%Types.Subfield{} = sf, _values, _endian), do: {sf, nil}
@@ -650,8 +663,7 @@ defmodule ExtFit.Decode do
 
   defp resolve_in_ref_fields([reffield | reffields], %Types.Subfield{} = subfield, field, values, endian) do
     match =
-      values
-      |> Enum.find(fn
+      Enum.find(values, fn
         %Types.FieldData{field: %{num: num}, raw_value: raw_value} ->
           num == reffield.num && reffield.raw_value == raw_value
 
@@ -687,7 +699,7 @@ defmodule ExtFit.Decode do
   defp consume_string_until_null_or_end(<<0, _rest::binary>>), do: []
 
   defp consume_string_until_null_or_end(<<c::utf8, rest::binary>>) do
-    [c | consume_string_until_null_or_end(rest)] |> List.to_string()
+    List.to_string([c | consume_string_until_null_or_end(rest)])
   end
 
   # From spec:
@@ -703,7 +715,7 @@ defmodule ExtFit.Decode do
   end
 
   defp apply_scale_offset(value, %{offset: offset, scale: scale}) do
-    do_apply_scale_offset(List.wrap(value), offset, scale) |> hd()
+    value |> List.wrap() |> do_apply_scale_offset(offset, scale) |> hd()
   end
 
   defp do_apply_scale_offset(values, offset, scale) do
@@ -715,18 +727,21 @@ defmodule ExtFit.Decode do
     end
   end
 
+  @dev_field_names ~w(developer_data_index field_definition_number fit_base_type_id field_name units native_field_num)a
   defp maybe_store_dev_field(%FitData{fields: _fields, def_mesg: %{mesg_type: %{num: num}}} = mesg, state) do
     cond do
       num == Profile.Types.mesg_num(:developer_data_id) ->
         dev_data_index =
-          get_data_mesg_field(mesg, :developer_data_index)
+          mesg
+          |> get_data_mesg_field(:developer_data_index)
           |> case do
             %{value: value} -> value
             _ -> raise("Missing dev data index")
           end
 
         application_id =
-          get_data_mesg_field(mesg, :application_id)
+          mesg
+          |> get_data_mesg_field(:application_id)
           |> case do
             %{value: value} -> value
             _ -> nil
@@ -736,10 +751,8 @@ defmodule ExtFit.Decode do
 
       num == Profile.Types.mesg_num(:field_description) ->
         desc =
-          ~w(developer_data_index field_definition_number
-                fit_base_type_id field_name units native_field_num)a
-          |> Enum.reduce(%{}, fn name, desc ->
-            value = (get_data_mesg_field(mesg, name) || %{}) |> Map.get(:value)
+          Enum.reduce(@dev_field_names, %{}, fn name, desc ->
+            value = Map.get(get_data_mesg_field(mesg, name) || %{}, :value)
             Map.put(desc, name, value)
           end)
 
@@ -766,13 +779,9 @@ defmodule ExtFit.Decode do
   defp maybe_store_dev_field(%FitDefinition{}, state), do: state
 
   defp get_data_mesg_field(%FitData{fields: fields}, match) do
-    fields
-    |> Enum.find(fn
-      %{field: %{name: name}} ->
-        name == match
-
-      _ ->
-        false
+    Enum.find(fields, fn
+      %{field: %{name: name}} -> name == match
+      _ -> false
     end)
   end
 
@@ -784,7 +793,7 @@ defmodule ExtFit.Decode do
   defp upsert_dev_field(_state, nil, _params, _overwrite), do: raise("Missing dev data index")
 
   defp upsert_dev_field(state, dev_data_index, params, overwrite) do
-    existing_data = if(!overwrite, do: Map.get(state.dev_field_defs, dev_data_index)) || %{fields: %{}}
+    existing_data = unless(overwrite, do: Map.get(state.dev_field_defs, dev_data_index)) || %{fields: %{}}
 
     data =
       existing_data
@@ -810,16 +819,18 @@ defmodule ExtFit.Decode do
         full_offset = offset + pos
         nbit = rem(full_offset, 8)
 
-        with <<byte::8, rest::binary>> <- bytes do
-          acc = acc ||| (byte &&& Enum.at(@bit_mask, nbit)) >>> nbit <<< pos
+        case bytes do
+          <<byte::8, rest::binary>> ->
+            acc = acc ||| (byte &&& Enum.at(@bit_mask, nbit)) >>> nbit <<< pos
 
-          if nbit == 7 do
-            {acc, rest}
-          else
-            {acc, bytes}
-          end
-        else
-          _ -> {acc, nil}
+            if nbit == 7 do
+              {acc, rest}
+            else
+              {acc, bytes}
+            end
+
+          _ ->
+            {acc, nil}
         end
       end)
       |> elem(0)

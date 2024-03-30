@@ -4,10 +4,11 @@ defmodule ExtFit.Processor.DebugProcessor do
   """
 
   @behaviour ExtFit.Processor
-  require Logger
 
   alias ExtFit.Record, warn: false
   alias ExtFit.Types.FieldData
+
+  require Logger
 
   @log_index []
   @inspect_opts [width: :infinity, limit: :infinity, charlists: :as_lists]

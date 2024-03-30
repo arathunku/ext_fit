@@ -1,4 +1,5 @@
 defmodule ExtFit.Record.FitCrc do
+  @moduledoc false
   @derive {Inspect, except: ~w(__chunk__)a}
   defstruct crc: 0, matched: nil, __chunk__: nil
 

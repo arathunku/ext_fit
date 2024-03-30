@@ -49,7 +49,7 @@ defmodule ExtFit.MixProject do
       {:cldr_utils, "~> 2.24"},
       {:excoveralls, "~> 0.18.0", only: [:dev, :test], runtime: false},
       {:ex_doc, "~> 0.31", only: :dev, runtime: false},
-      {:dialyxir, "~> 1.3", only: [:dev], runtime: false},
+      {:dialyxir, "~> 1.4", only: [:dev, :test], runtime: false},
       {:csv, "~> 3.2", only: [:test]},
       {:credo, "~> 1.7", only: [:dev, :test], runtime: false},
       {:styler, "~> 0.11", only: [:dev, :test], runtime: false}
@@ -65,7 +65,8 @@ defmodule ExtFit.MixProject do
         "format --check-formatted",
         "deps.unlock --check-unused",
         "test --warnings-as-errors",
-        "dialyzer --format short"
+        "dialyzer --format short",
+        "credo"
       ]
     ]
   end

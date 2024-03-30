@@ -9,25 +9,25 @@ defmodule ExtFit.Profile do
 
   defmacro __using__(:types) do
     quote do
+      @before_compile {unquote(__MODULE__), :__compile_types_callbacks__}
+
       import ExtFit.Profile, only: [type: 3, type: 4]
 
       Enum.each(unquote(@accumulating_types_attrs), fn attr ->
         Module.register_attribute(__MODULE__, attr, accumulate: true)
       end)
-
-      @before_compile {unquote(__MODULE__), :__compile_types_callbacks__}
     end
   end
 
   defmacro __using__(:messages) do
     quote do
+      @before_compile {unquote(__MODULE__), :__compile_messages_callbacks__}
+
       import ExtFit.Profile, only: [message: 2]
 
       Enum.each(unquote(@accumulating_messages_attrs), fn attr ->
         Module.register_attribute(__MODULE__, attr, accumulate: true)
       end)
-
-      @before_compile {unquote(__MODULE__), :__compile_messages_callbacks__}
     end
   end
 
@@ -79,7 +79,7 @@ defmodule ExtFit.Profile do
 
   # Opts are accepted but at this moment they're not used later anywhere
   def __type__(name, type, values, _opts, %Macro.Env{module: mod}) do
-    types = mod |> Module.get_attribute(:extfit_types)
+    types = Module.get_attribute(mod, :extfit_types)
 
     if Keyword.has_key?(types, name) do
       raise ArgumentError, "the type #{inspect(name)} is already set"
@@ -89,21 +89,17 @@ defmodule ExtFit.Profile do
       name: name,
       base_type: Types.base_type_by_name(type),
       values:
-        Enum.map(values, fn
-          {num, value_name, _} ->
-            {num, %Types.FieldTypeValue{num: num, name: value_name}}
-
-          {num, value_name} ->
-            {num, %Types.FieldTypeValue{num: num, name: value_name}}
+        Map.new(values, fn
+          {num, value_name, _} -> {num, %Types.FieldTypeValue{num: num, name: value_name}}
+          {num, value_name} -> {num, %Types.FieldTypeValue{num: num, name: value_name}}
         end)
-        |> Enum.into(%{})
     }
 
     Module.put_attribute(mod, :extfit_types, field_type)
   end
 
   def __message__(message_mod, name, %Macro.Env{module: mod}) do
-    messages = mod |> Module.get_attribute(:extfit_messages)
+    messages = Module.get_attribute(mod, :extfit_messages)
 
     if Keyword.has_key?(messages, name) do
       raise ArgumentError, "the message #{inspect(name)} is already set"
@@ -114,16 +110,17 @@ defmodule ExtFit.Profile do
 
   def __message_mod__(_mod, name, block) do
     {num, _} =
-      Types.by_name(:mesg_num).values
-      |> Enum.find({:error, {:value_not_found, name}}, fn {_, v} -> v.name == to_string(name) end)
+      Enum.find(Types.by_name(:mesg_num).values, {:error, {:value_not_found, name}}, fn {_, v} ->
+        v.name == to_string(name)
+      end)
 
     quote do
+      @before_compile {unquote(__MODULE__), :__compile_message_mod_callbacks__}
+
       import ExtFit.Profile, only: [field: 4, field: 3]
 
       Module.register_attribute(__MODULE__, :extfit_struct_fields, accumulate: false)
       Module.register_attribute(__MODULE__, unquote(@accumulating_fields_attr), accumulate: true)
-
-      @before_compile {unquote(__MODULE__), :__compile_message_mod_callbacks__}
 
       @num unquote(num)
       @name unquote(name)
@@ -132,7 +129,7 @@ defmodule ExtFit.Profile do
   end
 
   def __field__(mod, num, name, type, opts) do
-    fields = mod |> Module.get_attribute(@accumulating_fields_attr)
+    fields = Module.get_attribute(mod, @accumulating_fields_attr)
 
     if Keyword.has_key?(fields, name) do
       raise ArgumentError, "the field #{inspect(name)} is already set"
@@ -142,14 +139,10 @@ defmodule ExtFit.Profile do
   end
 
   defmacro __compile_types_callbacks__(%Macro.Env{module: mod}) do
-    extfit_types = mod |> Module.get_attribute(:extfit_types)
+    extfit_types = Module.get_attribute(mod, :extfit_types)
 
     types =
-      extfit_types
-      |> Enum.map(fn type ->
-        {type.name, type}
-      end)
-      |> Enum.into(%{})
+      Map.new(extfit_types, fn type -> {type.name, type} end)
 
     Enum.each(unquote(@accumulating_types_attrs), &Module.delete_attribute(mod, &1))
     Module.put_attribute(mod, :types, types)
@@ -162,26 +155,24 @@ defmodule ExtFit.Profile do
 
       | Name | Base type |
       | ------ | ---- |
-      #{Enum.map(@types, fn {name, type} -> "| #{name} | #{type.base_type.name} |" end) |> Enum.sort() |> Enum.join("\n")}
+      #{@types |> Enum.map(fn {name, type} -> "| #{name} | #{type.base_type.name} |" end) |> Enum.sort() |> Enum.join("\n")}
       """
 
       @doc """
       Get type by name
       """
-      @spec by_name(atom) :: %ExtFit.Types.FieldType{} | {:error, {:type_not_found, atom}}
+      @spec by_name(atom) :: ExtFit.Types.FieldType.t() | {:error, {:type_not_found, atom}}
       def by_name(name) when is_atom(name), do: Map.get(@types, name) || {:error, {:type_not_found, name}}
     end
   end
 
   defmacro __compile_messages_callbacks__(%Macro.Env{module: mod}) do
-    extfit_messages = mod |> Module.get_attribute(:extfit_messages) || []
+    extfit_messages = Module.get_attribute(mod, :extfit_messages) || []
 
     messages =
-      extfit_messages
-      |> Enum.map(fn {name, mod} -> {name, struct(mod)} end)
-      |> Enum.into(%{})
+      Map.new(extfit_messages, fn {name, mod} -> {name, struct(mod)} end)
 
-    messages_num_mapping = Enum.map(messages, fn {_, msg} -> {msg.num, msg.name} end) |> Enum.into(%{})
+    messages_num_mapping = Map.new(messages, fn {_, msg} -> {msg.num, msg.name} end)
 
     Enum.each(unquote(@accumulating_messages_attrs), &Module.delete_attribute(mod, &1))
     Module.put_attribute(mod, :messages, messages)
@@ -230,14 +221,10 @@ defmodule ExtFit.Profile do
   end
 
   defmacro __compile_message_mod_callbacks__(%Macro.Env{module: mod}) do
-    fields = mod |> Module.get_attribute(:extfit_acc_fields) || []
+    fields = Module.get_attribute(mod, :extfit_acc_fields) || []
 
     fields =
-      fields
-      |> Enum.map(&elem(&1, 1))
-      |> load_pending_values()
-      |> Enum.map(&{&1.name, &1})
-      |> Enum.into(%{})
+      fields |> Enum.map(&elem(&1, 1)) |> load_pending_values() |> Map.new(&{&1.name, &1})
 
     Module.delete_attribute(mod, @accumulating_fields_attr)
     Module.put_attribute(mod, :fields, fields)
@@ -252,20 +239,21 @@ defmodule ExtFit.Profile do
 
       @fields_table_doc @fields
                         |> Enum.sort_by(fn {_, %{num: num}} -> num end)
-                        |> Enum.map(fn {name, field} ->
-                          [
-                            "| " <> to_string(name),
-                            field.type.name,
-                            field.num,
-                            field.scale,
-                            field.offset,
-                            field.units,
-                            to_string(field.array) <> " |"
-                          ]
-                          |> Enum.map(&(&1 || ""))
-                          |> Enum.join(" | ")
+                        |> Enum.map_join("\n", fn {name, field} ->
+                          Enum.map_join(
+                            [
+                              "| " <> to_string(name),
+                              field.type.name,
+                              field.num,
+                              field.scale,
+                              field.offset,
+                              field.units,
+                              to_string(field.array) <> " |"
+                            ],
+                            " | ",
+                            &(&1 || "")
+                          )
                         end)
-                        |> Enum.join("\n")
       @moduledoc """
 
       Message: `:#{@name}` identified by num=#{@num}
@@ -284,11 +272,11 @@ defmodule ExtFit.Profile do
     {subfields, opts} = Keyword.pop(opts, :subfields, [])
     {components, opts} = Keyword.pop(opts, :components, [])
     {units, opts} = Keyword.pop(opts, :units, [])
-    units = units |> List.wrap()
+    units = List.wrap(units)
     {scale, opts} = Keyword.pop(opts, :scale, [])
-    scale = scale |> List.wrap()
+    scale = List.wrap(scale)
     {offset, opts} = Keyword.pop(opts, :offset, [])
-    offset = offset |> List.wrap()
+    offset = List.wrap(offset)
     {bits, opts} = Keyword.pop(opts, :bits, [])
     {array, opts} = Keyword.pop(opts, :array, false)
     {accumulate, opts} = Keyword.pop(opts, :accumulate, [])
@@ -298,7 +286,7 @@ defmodule ExtFit.Profile do
       raise ArgumentError, "unknown option(s) #{inspect(opts)}"
     end
 
-    if !type_struct do
+    unless type_struct do
       raise ArgumentError, "the type #{inspect(type)} is unknown"
     end
 
@@ -310,16 +298,16 @@ defmodule ExtFit.Profile do
         type_struct = Types.by_name(type)
         {components, opts} = Map.pop(opts, :components, [])
         {accumulate, opts} = Map.pop(opts, :accumulate, [])
-        accumulate = accumulate |> List.wrap()
+        accumulate = List.wrap(accumulate)
         {ref_fields, opts} = Map.pop(opts, :ref_fields, [])
         {units, opts} = Map.pop(opts, :units, [])
-        units = units |> List.wrap()
+        units = List.wrap(units)
         {scale, opts} = Map.pop(opts, :scale, [])
-        scale = scale |> List.wrap()
+        scale = List.wrap(scale)
         {offset, opts} = Map.pop(opts, :offset, [])
         {bits, opts} = Map.pop(opts, :bits, [])
 
-        if !type_struct do
+        unless type_struct do
           raise ArgumentError, "the type #{inspect(type)} is unknown"
         end
 
@@ -338,24 +326,18 @@ defmodule ExtFit.Profile do
              }}
           end)
 
-        %Types.Subfield{
-          name: name,
-          type: type_struct,
-          num: num,
-          components: components,
-          ref_fields: ref_fields
-        }
-        |> set_field_components({scale, offset, units, bits, accumulate}, components)
+        set_field_components(
+          %Types.Subfield{name: name, type: type_struct, num: num, components: components, ref_fields: ref_fields},
+          {scale, offset, units, bits, accumulate},
+          components
+        )
       end)
 
-    %Types.Field{
-      num: num,
-      type: type_struct,
-      name: name,
-      array: array,
-      subfields: subfields
-    }
-    |> set_field_components({scale, offset, units, bits, accumulate}, components)
+    set_field_components(
+      %Types.Field{num: num, type: type_struct, name: name, array: array, subfields: subfields},
+      {scale, offset, units, bits, accumulate},
+      components
+    )
   end
 
   defp set_field_components(field, {scale, offset, units, bits, accumulate}, components) do
@@ -394,14 +376,10 @@ defmodule ExtFit.Profile do
   end
 
   defp load_pending_values(fields) do
-    fields
-    |> Enum.map(&load_pending_field_values(&1, fields))
+    Enum.map(fields, &load_pending_field_values(&1, fields))
   end
 
-  defp load_pending_field_values(
-         %{components: components, ref_fields: ref_fields} = field,
-         fields
-       ) do
+  defp load_pending_field_values(%{components: components, ref_fields: ref_fields} = field, fields) do
     %{
       field
       | components: load_pending_components(components, fields),

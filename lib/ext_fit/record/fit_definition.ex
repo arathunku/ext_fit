@@ -1,4 +1,5 @@
 defmodule ExtFit.Record.FitDefinition do
+  @moduledoc false
   @header ~w(is_developer_data local_mesg_num time_offset)a
   @payload ~w(mesg_type global_mesg_num endian field_defs dev_field_defs)a
 

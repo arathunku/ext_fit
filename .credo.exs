@@ -3,7 +3,7 @@
     %{
       name: "default",
       files: %{
-        included: ["lib/", "src/", "web/", "apps/"],
+        included: ["lib/", "src/"],
         excluded: []
       },
       plugins: [],
@@ -22,7 +22,7 @@
           # Some rules have a comment before them explaining ways Styler deviates from the Credo rule.
           #
           # always expands `A.{B, C}`
-          {Credo.Check.Consistency.MultiAliasImportRequireUse, false},
+          # {Credo.Check.Consistency.MultiAliasImportRequireUse, false},
           # including `case`, `fn` and `with` statements
           {Credo.Check.Consistency.ParameterPatternMatching, false},
           # Styler implements this rule with a depth of 3 and minimum repetition of 2
@@ -53,13 +53,19 @@
           {Credo.Check.Refactor.MapInto, false},
           # in pipes only
           {Credo.Check.Refactor.MapJoin, false},
-          {Credo.Check.Refactor.NegatedConditionsInUnless, false},
-          {Credo.Check.Refactor.NegatedConditionsWithElse, false},
+          # {Credo.Check.Refactor.NegatedConditionsInUnless, false},
+          # {Credo.Check.Refactor.NegatedConditionsWithElse, false},
           # allows ecto's `from
           {Credo.Check.Refactor.PipeChainStart, false},
           {Credo.Check.Refactor.RedundantWithClauseResult, false},
           {Credo.Check.Refactor.UnlessWithElse, false},
-          {Credo.Check.Refactor.WithClauses, false}
+          {Credo.Check.Refactor.WithClauses, false},
+
+          # custom ext_fit rules
+          {Credo.Check.Refactor.Nesting, false},
+          {Credo.Check.Refactor.CyclomaticComplexity, false},
+          {Credo.Check.Design.TagFIXME, false},
+          {Credo.Check.Design.TagTODO, false}
         ]
       }
     }

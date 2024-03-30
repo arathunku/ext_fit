@@ -1,4 +1,5 @@
 defmodule ExtFit.Record.FitData do
+  @moduledoc false
   @header ~w(is_developer_data local_mesg_num time_offset)a
   @payload ~w(def_mesg fields)a
 
