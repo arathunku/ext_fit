@@ -16,8 +16,7 @@ Currently used FIT profile can be seen in `ExtFit.Profile.Types` file.
 
 ## Installation
 
-If [available in Hex](https://hex.pm/docs/publish), the package can be installed
-by adding `ext_fit` to your list of dependencies in `mix.exs`:
+The package can be installed by adding `ext_fit` to your list of dependencies in `mix.exs`:
 
 ```elixir
 def deps do
