@@ -10,8 +10,8 @@ defmodule ExtFit.Processor do
   @doc """
   Called for each record.
   """
-  @type record :: FitData.t() | FitDefinition.t()
-  @callback process_record(arg :: record) :: record
+  @type fit_record :: FitData.t() | FitDefinition.t()
+  @callback process_record(arg :: fit_record) :: fit_record
 
   @doc """
   Called for each field data.
