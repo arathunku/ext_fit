@@ -413,13 +413,14 @@ defmodule ExtFit.Decode do
       Enum.reduce(all_field_defs, {[], data, state}, fn field_def, {fields, rest, state} ->
         size = field_def.size
         <<bin::binary-size(size), rest::binary>> = rest
-        raw_value = if(field_def.field, do: read_value(bin, def_mesg.endian, field_def))
+        raw_value = read_value(bin, def_mesg.endian, field_def)
 
         fields = [
           %FieldData{
             field_def: field_def,
             field: field_def.field,
-            raw_value: if(raw_value == :invalid, do: nil, else: raw_value)
+            raw_value: if(raw_value == :invalid || is_nil(field_def.field), do: nil, else: raw_value),
+            encoded_raw_value: if(raw_value != :invalid && is_nil(field_def.field), do: raw_value)
           }
           | fields
         ]
@@ -569,8 +570,9 @@ defmodule ExtFit.Decode do
 
   defp read_value(bin, endian, %{field: field, base_type: %{size: size, name: name, invalid: invalid}}) do
     values = div(byte_size(bin), size)
+    array? = is_map(field) && Map.get(field, :array)
 
-    case Map.get(field, :array) || values do
+    case array? || values do
       true ->
         read_values_array(bin, invalid, endian, name, size, values)
 
@@ -821,7 +823,7 @@ defmodule ExtFit.Decode do
 
         case bytes do
           <<byte::8, rest::binary>> ->
-            acc = acc ||| (byte &&& Enum.at(@bit_mask, nbit)) >>> nbit <<< pos
+            acc = acc ||| ((byte &&& Enum.at(@bit_mask, nbit)) >>> nbit) <<< pos
 
             if nbit == 7 do
               {acc, rest}

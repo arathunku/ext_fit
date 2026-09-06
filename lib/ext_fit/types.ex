@@ -188,6 +188,7 @@ defmodule ExtFit.Types.FieldData do
             parent_field: nil,
             value: nil,
             raw_value: nil,
+            encoded_raw_value: nil,
             units: nil,
             value_label: nil
 
@@ -197,6 +198,7 @@ defmodule ExtFit.Types.FieldData do
           parent_field: nil | ExtFit.Types.Field.t() | ExtFit.Types.Subfield.t(),
           value: any(),
           raw_value: nil | non_neg_integer(),
+          encoded_raw_value: nil | non_neg_integer(),
           units: nil | String.t(),
           value_label: nil | String.t()
         }

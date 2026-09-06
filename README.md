@@ -7,7 +7,8 @@
 
 <!-- @moduledoc -->
 
-`.fit` file decoder. See `ExtFit.Decode` module for more details and usage.
+`.fit` file decoder and encoder. See `ExtFit.Decode` and `ExtFit.Encode` for
+more details and usage.
 
 It's still in alpha-release and there's a slim chance that the format of returned
 structs will change but if possible, will be avoided.
@@ -35,7 +36,10 @@ end
   |> ExtFit.Decode.decode()
 
 # print first record
-hd(record)
+hd(records)
+
+# Re-encode the records after filtering or editing their raw field values
+fit_binary = ExtFit.Encode.encode!(records)
 ```
 
 The docs can be found at <https://hexdocs.pm/ext_fit>.
